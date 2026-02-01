@@ -1,0 +1,166 @@
+/* ---------- HOME ---------- */
+
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(120deg, #0f172a, #1e293b);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.home-content {
+  max-width: 900px;
+  text-align: center;
+  padding: clamp(20px, 5vw, 40px);
+}
+
+.home-content h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 20px;
+}
+
+.home-content span {
+  color: #38bdf8;
+}
+
+.home-content p {
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: #cbd5f5;
+  margin-bottom: 40px;
+}
+
+.home-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.home-btn {
+  padding: 10px 24px;
+  font-size: 16px;
+  color: #b284e7;
+  border-radius: 20px;
+  border-style: groove;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.home-btn:hover {
+  color: #000;
+  background-color: #b284e7;
+}
+
+/* Mobile buttons full width */
+@media (max-width: 600px) {
+  .home-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+
+/* ---------- LOGIN ---------- */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Left section */
+.login-left {
+  flex: 1;
+  background: linear-gradient(120deg, #0f172a, #1e293b);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 5vw, 40px);
+}
+
+.login-left h2 {
+  font-size: clamp(1.8rem, 4vw, 2.25rem);
+  margin-bottom: 10px;
+}
+
+.login-left p {
+  color: #cbd5f5;
+  max-width: 400px;
+  font-size: clamp(0.95rem, 2.5vw, 1rem);
+}
+
+/* Right section */
+.login-right {
+  flex: 1;
+  background: rgb(78, 79, 87);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  padding: clamp(20px, 5vw, 40px);
+}
+
+.login-card h3 {
+  font-size: clamp(1.4rem, 3vw, 1.625rem);
+  margin-bottom: 10px;
+}
+
+.login-card p {
+  color: #b2c1d5;
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+.login-group {
+  margin-bottom: 20px;
+}
+
+.login-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #475569;
+}
+
+.login-group input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5f5;
+  font-size: 14px;
+}
+
+/* Button */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #0ea5e9;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ---------- MOBILE FIX ---------- */
+@media (max-width: 768px) {
+  .login-page {
+    flex-direction: column;
+  }
+
+  .login-left {
+    display: none; /* Optional: hide hero on mobile */
+  }
+
+  .login-right {
+    min-height: 100vh;
+  }
+}

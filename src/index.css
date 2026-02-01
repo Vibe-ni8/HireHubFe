@@ -1,0 +1,118 @@
+:root {
+  /* =========================
+     FONT
+  ========================= */
+  --font-base: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /* =========================
+     BACKGROUND COLORS
+  ========================= */
+  --bg-primary: #0b1324;      /* Main dark background */
+  --bg-secondary: #111c33;    /* Gradient mid */
+  --bg-tertiary: #162447;     /* Lighter navy */
+
+  /* =========================
+     TEXT COLORS
+  ========================= */
+  --text-primary: #ffffff;        /* Headings */
+  --text-secondary: #c7d2fe;      /* Description text */
+  --text-muted: #94a3b8;          /* Muted labels */
+
+  /* =========================
+     BRAND / ACCENT
+  ========================= */
+  --brand-primary: #38bdf8;       /* Cyan (HireHub + buttons) */
+  --brand-primary-hover: #0ea5e9;
+  --brand-outline: #38bdf8;
+
+  /* =========================
+     UI ELEMENTS
+  ========================= */
+  --border-color: rgba(255, 255, 255, 0.12);
+  --button-bg: #38bdf8;
+  --button-text: #04131f;
+  --button-outline-text: #38bdf8;
+
+  /* =========================
+     SPACING & RADIUS
+  ========================= */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+
+  line-height: 1.5;
+  font-family: var(--font-base);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(
+    135deg,
+    #0b1324 0%,
+    #111c33 50%,
+    #162447 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+h1 span {
+  color: var(--brand-primary); /* HireHub */
+}
+
+p {
+  max-width: 720px;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+button {
+  padding: 0.75em 1.8em;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+/* Primary button (Login) */
+.btn-primary {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-primary-hover);
+}
+
+/* Outline button (Learn More) */
+.btn-outline {
+  background-color: transparent;
+  color: var(--button-outline-text);
+  border: 2px solid var(--brand-outline);
+}
+
+.btn-outline:hover {
+  background-color: rgba(56, 189, 248, 0.12);
+}
+
+@media (max-width: 600px) {
+  .button-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}

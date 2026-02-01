@@ -1,0 +1,51 @@
+import { Routes, Route } from "react-router-dom"
+import './index.css'
+import './App.css'
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import ProtectedRoute from "./auth/ProtectedRoute"
+import UserManagement from "./pages/admin/UserManagement"
+import AdminLayout from "./pages/admin/AdminLayout"
+import AdminDashboard from "./pages/admin/AdminDashboard"
+import { ToastContainer } from "react-toastify"
+
+export default function App() {
+  return (
+      <>
+        <Routes>
+
+          {/* Public */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+              
+          {/* Admin */}
+          <Route element={<ProtectedRoute roles={["Admin"]} children={undefined} />}>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="users" element={<UserManagement />} />
+            </Route>
+          </Route>
+
+          {/* HR */}
+          {/* <Route element={<ProtectedRoute roles={["HR"]} children={undefined} />}>
+            <Route path="/hr" element={<HRLayout />}>
+              <Route index element={<HRDashboard />} />
+              <Route path="drives" element={<DriveList />} />
+              <Route path="drives/create" element={<CreateDrive />} />
+              <Route path="drives/:id" element={<DriveDetails />} />
+            </Route>
+          </Route> */}
+
+        </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          pauseOnHover
+          theme="colored"
+        />
+      </>
+  );
+}
