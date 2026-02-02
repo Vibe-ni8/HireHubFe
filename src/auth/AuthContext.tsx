@@ -29,7 +29,10 @@ export default function AuthProvider({ children }: AuthProviderProps) {
     <AuthContext.Provider value={{ 
         isAuthenticated: isAuthenticated, 
         getRole: () => getCurrentUserRole(), 
-        getUserId: () => getCurrentUserId(), 
+        getUserId: () => {
+          let userId = getCurrentUserId();
+          return userId !== null ? parseInt(userId, 10) : null;
+        }, 
         login, 
         logout 
       }}>
@@ -42,7 +45,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 export interface AuthContextType {
   isAuthenticated: boolean;
   getRole: () => string | null;
-  getUserId: () => string | null;
+  getUserId: () => number | null;
   login: (token: string) => void;
   logout: () => void;
 }

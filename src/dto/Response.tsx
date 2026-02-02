@@ -1,9 +1,20 @@
+export interface User {
+    userId: number,
+    fullName: string,
+    email: string,
+    phone: string,
+    isActive: boolean,
+    roleId: number,
+    roleName: string,
+    createdDate: Date,
+    updatedDate: Date
+}
 
 export interface LoginResponse extends Response<string> {
 }
 
 export interface Response<T> extends BaseResponse {
-    data?: T
+    data?: T | null
 }
 
 export interface BaseResponse {
@@ -19,6 +30,6 @@ interface ValidationError {
 export interface ErrorResponse {
     statusCode: number,
     message: string,
-    traceId?: string,
-    stackTrace?: string
+    traceId?: string | null,
+    stackTrace?: string | null
 }

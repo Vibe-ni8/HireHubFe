@@ -22,7 +22,6 @@ export default function Login() {
         switch(getRole())
         {
           case 'Admin': navigate('/admin'); break;
-          case 'HR': navigate('/hr'); break;
           default: navigate('/'); break;
         }
       })

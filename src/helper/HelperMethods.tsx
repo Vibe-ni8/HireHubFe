@@ -7,6 +7,9 @@ export function HandleApiErrors(error: AxiosError<BaseResponse>)
     if (error.response === undefined || error.response.status === 500) {
       toast.error('Server Error'); return;
     }
+    if (error.response.status === 404) {
+      toast.error('Resourse not found'); return;
+    }
     if (error.response.status === 403) {
       toast.warn('Permission Denied'); return;
     }

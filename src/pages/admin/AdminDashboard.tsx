@@ -1,8 +1,7 @@
+
 export default function AdminDashboard() {
   return (
     <>
-      <h1>Dashboard</h1>
-
       <div className="dashboard-cards">
         <div className="card">
           <h3>Total Users</h3>

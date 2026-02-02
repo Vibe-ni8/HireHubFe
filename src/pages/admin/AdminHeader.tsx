@@ -1,0 +1,51 @@
+import { NavLink } from "react-router-dom";
+import { useAuth } from "../../auth/AuthContext";
+import { useEffect, useState } from "react";
+import { getUser } from "../../services/Auth.service";
+import type { AxiosError } from "axios";
+import type { BaseResponse, User } from "../../dto/Response";
+import { HandleApiErrors, HandleApiResponse } from "../../helper/HelperMethods";
+
+export default function AdminHeader() {
+
+  const { logout, getUserId } = useAuth();
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    let userId = getUserId();
+    getUser(userId!)
+      .then((response) => {
+        const result = HandleApiResponse(response);
+        setUser(result.data ?? null)
+      })
+      .catch((err: AxiosError<BaseResponse>) => {
+        HandleApiErrors(err);
+      });
+  }, []);
+    
+  const handleLogout = () => {
+      logout();
+  };
+  
+  return (
+    <div className="admin-header">
+      <h2>Admin Dashboard</h2>
+      <div className="admin-profile">
+        <div className="profile-avatar">{user?.fullName.charAt(0)}</div>
+        <div className="profile-dropdown">
+          <div className="profile-info">
+            <p className="profile-name">{user?.fullName}</p>
+            <p className="profile-email">{user?.email}</p>
+          </div>
+          <ul>
+            <li><NavLink to="user">My Profile</NavLink></li>
+            <li><NavLink to="#">Settings</NavLink></li>
+            <li className="danger">
+              <button onClick={handleLogout}>Logout</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+}

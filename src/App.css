@@ -1,7 +1,7 @@
 /* ---------- HOME ---------- */
 
 .home-container {
-  min-height: 100vh;
+  height: 100vh;
   background: linear-gradient(120deg, #0f172a, #1e293b);
   color: white;
   display: flex;
@@ -66,7 +66,7 @@
 /* ---------- LOGIN ---------- */
 
 .login-page {
-  min-height: 100vh;
+  min-height: 98vh;
   display: flex;
 }
 
@@ -161,6 +161,6 @@
   }
 
   .login-right {
-    min-height: 100vh;
+    min-height: 98vh;
   }
 }
