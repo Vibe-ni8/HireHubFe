@@ -21,6 +21,12 @@ export default function AdminDashboard() {
 
   return (
     <>
+      {/* {!detail && (
+        <div className="spinner-overlay">
+          <div className="spinner" />
+        </div>
+      )} */}
+
       <div className="dashboard-cards">
 
         <div className="card">
