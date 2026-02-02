@@ -5,6 +5,7 @@ import { getUser } from "../../services/Auth.service";
 import type { AxiosError } from "axios";
 import type { BaseResponse, User } from "../../dto/Response";
 import { HandleApiErrors, HandleApiResponse } from "../../helper/HelperMethods";
+import Spinner from "../../components/Spinner";
 
 export default function AdminHeader() {
 
@@ -16,7 +17,7 @@ export default function AdminHeader() {
     getUser(userId!)
       .then((response) => {
         const result = HandleApiResponse(response);
-        setUser(result.data ?? null)
+        setUser(result.data ?? null);
       })
       .catch((err: AxiosError<BaseResponse>) => {
         HandleApiErrors(err);
@@ -29,7 +30,8 @@ export default function AdminHeader() {
   
   return (
     <div className="admin-header">
-      <h2>Admin Dashboard</h2>
+      <Spinner show={user === null}/>
+      <h2>👋Welcome back, {user?.fullName ?? '?'}</h2>
       <div className="admin-profile">
         <div className="profile-avatar">{user?.fullName.charAt(0)}</div>
         <div className="profile-dropdown">
@@ -38,7 +40,7 @@ export default function AdminHeader() {
             <p className="profile-email">{user?.email}</p>
           </div>
           <ul>
-            <li><NavLink to="user">My Profile</NavLink></li>
+            <li><NavLink to="my/profile">My Profile</NavLink></li>
             <li><NavLink to="#">Settings</NavLink></li>
             <li className="danger">
               <button onClick={handleLogout}>Logout</button>

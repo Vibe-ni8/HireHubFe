@@ -25,5 +25,5 @@ export default function ProtectedRoute({ children, roles }: ProtectedRouteProps)
 
 interface ProtectedRouteProps {
   children: ReactNode;
-  roles?: string[];
+  roles?: string[] | null;
 }

@@ -30,7 +30,7 @@ export interface User {
     roleId: number;
     roleName: string;
     createdDate: Date;
-    updatedDate: Date;
+    updatedDate?: Date | null;
 }
 
 export interface LoginResponse extends Response<string> {

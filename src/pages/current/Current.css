@@ -1,0 +1,82 @@
+.cu-profile-loading {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #64748b;
+}
+
+.cu-profile-page {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cu-profile-card {
+  width: min(70vw, 420px);
+  height: min(70vh, 520px);
+  background: linear-gradient(0deg, #044efc, #9498f8);
+  border-radius: 14px;
+  padding: 28px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Avatar */
+.cu-profile-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+/* Name */
+.cu-profile-card h2 {
+  margin: 4px 0 2px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Role */
+.cu-profile-role {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+/* Details */
+.cu-profile-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cu-detail {
+  display: flex;
+  flex-direction: column;
+}
+
+.cu-detail span {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.cu-detail p {
+  margin-top: 4px;
+  font-size: 15px;
+  color: #0f172a;
+}
+
