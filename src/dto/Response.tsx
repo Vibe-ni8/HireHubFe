@@ -1,16 +1,24 @@
 export interface AdminDashboardDetails {
     totalUsers: number;
-    totalCandidates: number;
+    activeUsers: number,
+    inactiveUsers: number,
     totalPanelMembers: number;
     totalMentors: number;
     totalHrs: number;
+    totalCandidates: number;
+    totalCandidatesHired: number;
+    totalCandidatesRejected: number;
+    totalDrives: number,
+    scheduledDrives: number,
+    ongoingDrives: number,
+    haltedDrives: number,
+    completedDrives: number,
+    cancelledDrives: number,
     totalInterviews: number;
     interviewsScheduled: number;
     interviewsOnProcess: number;
     interviewsCompleted: number;
     interviewsSkipped: number;
-    totalCandidatesHired: number;
-    totalCandidatesRejected: number;
 }
 
 export interface User {

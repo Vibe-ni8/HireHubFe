@@ -34,12 +34,12 @@ export default function AdminDashboard() {
 
         <div className="card">
           <h3>Active Users</h3>
-          <p>{'NS'}</p>
+          <p>{detail?.activeUsers ?? '-'}</p>
         </div>
 
         <div className="card">
           <h3>Inactive Users</h3>
-          <p>{'NS'}</p>
+          <p>{detail?.inactiveUsers ?? '-'}</p>
         </div>
 
         <div className="card">
@@ -84,27 +84,27 @@ export default function AdminDashboard() {
 
         <div className="card">
           <h3>Total Drives</h3>
-          <p>{'NS'}</p>
+          <p>{detail?.totalDrives ?? '-'}</p>
         </div>
 
         <div className="card">
           <h3>Ongoing Drives</h3>
-          <p>{'NS'}</p>
+          <p>{detail?.ongoingDrives ?? '-'}</p>
         </div>
 
         <div className="card">
           <h3>Halted Drives</h3>
-          <p>{'NS'}</p>
+          <p>{detail?.haltedDrives ?? '-'}</p>
         </div>
 
         <div className="card">
           <h3>Completed Drives</h3>
-          <p>{'NS'}</p>
+          <p>{detail?.completedDrives ?? '-'}</p>
         </div>
 
         <div className="card">
           <h3>Canceled Drives</h3>
-          <p>{'NS'}</p>
+          <p>{detail?.cancelledDrives ?? '-'}</p>
         </div>
 
       </div>
