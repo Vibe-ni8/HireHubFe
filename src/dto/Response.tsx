@@ -1,35 +1,50 @@
+export interface AdminDashboardDetails {
+    totalUsers: number;
+    totalCandidates: number;
+    totalPanelMembers: number;
+    totalMentors: number;
+    totalHrs: number;
+    totalInterviews: number;
+    interviewsScheduled: number;
+    interviewsOnProcess: number;
+    interviewsCompleted: number;
+    interviewsSkipped: number;
+    totalCandidatesHired: number;
+    totalCandidatesRejected: number;
+}
+
 export interface User {
-    userId: number,
-    fullName: string,
-    email: string,
-    phone: string,
-    isActive: boolean,
-    roleId: number,
-    roleName: string,
-    createdDate: Date,
-    updatedDate: Date
+    userId: number;
+    fullName: string;
+    email: string;
+    phone: string;
+    isActive: boolean;
+    roleId: number;
+    roleName: string;
+    createdDate: Date;
+    updatedDate: Date;
 }
 
 export interface LoginResponse extends Response<string> {
 }
 
 export interface Response<T> extends BaseResponse {
-    data?: T | null
+    data?: T | null;
 }
 
 export interface BaseResponse {
-    warnings: Array<string>,
-    errors: Array<ValidationError>
+    warnings: Array<string>;
+    errors: Array<ValidationError>;
 }
 
 interface ValidationError {
-    propertyName: string,
-    errorMessage: string
+    propertyName: string;
+    errorMessage: string;
 }
 
 export interface ErrorResponse {
-    statusCode: number,
-    message: string,
-    traceId?: string | null,
-    stackTrace?: string | null
+    statusCode: number;
+    message: string;
+    traceId?: string | null;
+    stackTrace?: string | null;
 }
