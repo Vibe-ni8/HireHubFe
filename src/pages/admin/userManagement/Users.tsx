@@ -11,7 +11,7 @@ export default function Users() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [users, setUsers] = useState<Array<User> | null>(null);
+  const [users, setUsers] = useState<Array<User> | null>(dummyUsers);
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [roleFilter, setRoleFilter] = useState<string>("all");
@@ -144,3 +144,50 @@ export default function Users() {
     </div>
   );
 }
+
+const dummyUsers: User[] = [
+  {
+    userId: 1,
+    fullName: 'Rahul Sharma',
+    email: 'rahul.sharma@example.com',
+    phone: '9876543210',
+    isActive: true,
+    roleId: 1,
+    roleName: 'Admin',
+    createdDate: new Date('2024-01-10T10:30:00'),
+    updatedDate: new Date('2024-06-15T14:45:00')
+  },
+  {
+    userId: 2,
+    fullName: 'Anita Verma',
+    email: 'anita.verma@example.com',
+    phone: '9123456789',
+    isActive: true,
+    roleId: 2,
+    roleName: 'Manager',
+    createdDate: new Date('2024-02-05T09:15:00'),
+    updatedDate: null
+  },
+  {
+    userId: 3,
+    fullName: 'Suresh Kumar',
+    email: 'suresh.kumar@example.com',
+    phone: '9988776655',
+    isActive: false,
+    roleId: 3,
+    roleName: 'Staff',
+    createdDate: new Date('2023-11-20T16:00:00'),
+    updatedDate: new Date('2024-03-01T11:20:00')
+  },
+  {
+    userId: 4,
+    fullName: 'Priya Nair',
+    email: 'priya.nair@example.com',
+    phone: '9090909090',
+    isActive: true,
+    roleId: 2,
+    roleName: 'Manager',
+    createdDate: new Date('2024-04-18T08:50:00'),
+    updatedDate: null
+  }
+];

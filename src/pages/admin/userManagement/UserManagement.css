@@ -175,9 +175,37 @@
   color: #64748b;
 }
 
+.ud-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ud-head button {
+  padding: 5px 10px;
+  border: none;
+  background-color: white;
+}
+
+.ud-head button:hover {
+  background-color: #000;
+  color: white;
+}
+
 .ud-detail-row {
   display: flex;
   margin-bottom: 10px;
+}
+
+.ud-detail-row input {
+  padding: 6px 8px;
+  width: 250px;
+  border-radius: 8px;
+  border-width: 1px;
+}
+
+.ud-checkbox {
+  width: 200px;
 }
 
 .ud-detail-row label {
@@ -193,6 +221,28 @@
 .ud-inactive {
   color: red;
   font-weight: 600;
+}
+
+.ud-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.ud-actions .btn-save {
+  background: #198754;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.ud-actions .btn-cancel {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
 }
 
 

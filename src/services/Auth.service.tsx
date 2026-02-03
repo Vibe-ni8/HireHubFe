@@ -15,6 +15,10 @@ pageNumber: number | null, pageSize: number | null) {
     return api.get<Response<Array<User>>>(`User/fetch/all/test`, { params: {role, isActive, pageNumber, pageSize} });
 }
 
+export function editUser(payload: any) {
+    return api.post<Response<User>>(`User/edit/test`, payload);
+}
+
 export function getAdminDashboardDetails() {
     return api.get<Response<AdminDashboardDetails>>('Admin/dashboard/details/test')
 }
