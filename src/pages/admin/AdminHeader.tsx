@@ -44,7 +44,7 @@ export default function AdminHeader() {
             <p className="profile-email">{user?.email}</p>
           </div>
           <ul>
-            <li><NavLink to="my/profile">My Profile</NavLink></li>
+            <li><NavLink to="my">My Profile</NavLink></li>
             <li><NavLink to="#">Settings</NavLink></li>
             <li className="danger">
               <button onClick={handleLogout}>Logout</button>

@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes, Route, Navigate, Outlet } from "react-router-dom"
 import './index.css'
 import './App.css'
 import Home from "./pages/Home"
@@ -24,14 +24,21 @@ export default function App() {
           {/* Admin */}
           <Route element={<ProtectedRoute roles={["Admin"]} children={undefined} />}>
             <Route path="/admin" element={<AdminLayout />}>
+
               <Route path="" element={<Navigate to="dashboard" replace />} />
               <Route path="dashboard" element={<AdminDashboard />} />
-              <Route path="my/profile" element={<CurrentUserProfile />} />
+
+              <Route path="my" element={<Outlet/>} >
+                <Route path="" element={<Navigate to="profile" replace />} />
+                <Route path="profile" element={<CurrentUserProfile />} />
+              </Route>
+
               <Route path="user" element={<UserManagement />} >
                 <Route path="" element={<Navigate to="management" replace />} />
                 <Route path="management" element={<Users/>} />
                 <Route path="detail/:id" element={<UserDetail/>} />
               </Route>
+              
             </Route>
           </Route>
 
