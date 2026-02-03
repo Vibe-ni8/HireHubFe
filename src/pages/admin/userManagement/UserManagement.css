@@ -159,6 +159,42 @@
   color: #0b0d10;
 }
 
+.user-detail {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #0b0d10;
+}
+
+.ud-loading, .ud-notfound {
+  height: 80vh;
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #64748b;
+}
+
+.ud-detail-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.ud-detail-row label {
+  width: 120px;
+  font-weight: 600;
+}
+
+.ud-active {
+  color: green;
+  font-weight: 600;
+}
+
+.ud-inactive {
+  color: red;
+  font-weight: 600;
+}
+
 
 @media (max-width: 668px) {
     .um-page {
@@ -167,6 +203,11 @@
 
     .um-filters {
       overflow-x: scroll;
+    }
+
+    .ud-loading, .ud-notfound {
+      height: 70vh;
+      width: 100vw;
     }
 }
 

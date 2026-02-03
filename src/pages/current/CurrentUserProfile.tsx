@@ -28,11 +28,18 @@ export default function CurrentUserProfile() {
         });
     }, []);
 
-  if (!user) {
+  if (loading) {
     return (
       <>
         <Spinner show={loading}/>
-        <div className="cu-profile-loading">profile...</div>
+        <div className="cu-profile-loading">Loading profile...</div>
+      </>
+    );
+  }
+  if (!user) {
+    return (
+      <>
+        <div className="cu-profile-notfound">Profile not found</div>
       </>
     );
   }

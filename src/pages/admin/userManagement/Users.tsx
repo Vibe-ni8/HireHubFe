@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { BaseResponse, User } from "../../dto/Response";
-import Spinner from "../../components/Spinner";
-import { HandleApiErrors, HandleApiResponse } from "../../helper/HelperMethods";
+import type { BaseResponse, User } from "../../../dto/Response";
+import Spinner from "../../../components/Spinner";
+import { HandleApiErrors, HandleApiResponse } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
-import { getUsers } from "../../services/Auth.service";
+import { getUsers } from "../../../services/Auth.service";
 
 export default function Users() {
   
@@ -90,28 +90,43 @@ export default function Users() {
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map((user) => (
-              <tr
-                key={user.userId}
-                onClick={() => navigate(`/admin/user/profile/${user.userId}`)}
-              >
-                <td>{user.fullName}</td>
-                <td>{user.email}</td>
-                <td>{user.roleName}</td>
-                <td>
-                  <span className={user.isActive ? "um-active" : "um-inactive"}>
-                    {user.isActive ? "Active" : "Inactive"}
-                  </span>
-                </td>
-              </tr>
-            ))}
-            {filteredUsers.length === 0 && (
+            {loading ? (
               <tr>
                 <td colSpan={4} className="um-empty">
-                  No users found
+                  Loading Data...
                 </td>
               </tr>
-            )}
+            ) : users === null ? (
+              <tr>
+                <td colSpan={4} className="um-empty">
+                  No user record found
+                </td>
+              </tr>
+            ) : filteredUsers.length === 0 ? (
+              <tr>
+                <td colSpan={4} className="um-empty">
+                  No users found on current batch
+                </td>
+              </tr>
+            ) : 
+              <>
+                {filteredUsers.map((user) => (
+                  <tr
+                    key={user.userId}
+                    onClick={() => navigate(`/admin/user/detail/${user.userId}`)}
+                  >
+                    <td>{user.fullName}</td>
+                    <td>{user.email}</td>
+                    <td>{user.roleName}</td>
+                    <td>
+                      <span className={user.isActive ? "um-active" : "um-inactive"}>
+                        {user.isActive ? "Active" : "Inactive"}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </>
+            }
           </tbody>
         </table>
       </div>

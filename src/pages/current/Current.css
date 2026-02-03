@@ -1,4 +1,4 @@
-.cu-profile-loading {
+.cu-profile-loading, .cu-profile-notfound {
   height: 80vh;
   display: flex;
   align-items: center;

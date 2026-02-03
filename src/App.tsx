@@ -4,12 +4,13 @@ import './App.css'
 import Home from "./pages/Home"
 import Login from "./pages/Login"
 import ProtectedRoute from "./auth/ProtectedRoute"
-import UserManagement from "./pages/admin/UserManagement"
+import UserManagement from "./pages/admin/userManagement/UserManagement"
 import AdminLayout from "./pages/admin/AdminLayout"
 import AdminDashboard from "./pages/admin/AdminDashboard"
 import { ToastContainer } from "react-toastify"
 import CurrentUserProfile from "./pages/current/CurrentUserProfile"
-import Users from "./pages/admin/Users"
+import Users from "./pages/admin/userManagement/Users"
+import UserDetail from "./pages/admin/userManagement/UserDetail"
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
               <Route path="user" element={<UserManagement />} >
                 <Route path="" element={<Navigate to="management" replace />} />
                 <Route path="management" element={<Users/>} />
+                <Route path="detail/:id" element={<UserDetail/>} />
               </Route>
             </Route>
           </Route>

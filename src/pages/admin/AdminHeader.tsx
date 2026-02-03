@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 import { useEffect, useState } from "react";
 import { getUser } from "../../services/Auth.service";
@@ -9,7 +9,6 @@ import Spinner from "../../components/Spinner";
 
 export default function AdminHeader() {
 
-  const navigate = useNavigate();
   const { logout, getUserId } = useAuth();
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
@@ -38,7 +37,7 @@ export default function AdminHeader() {
       <Spinner show={loading}/>
       <h2>👋Welcome back, {user?.fullName ?? '?'}</h2>
       <div className="admin-profile">
-        <div className="profile-avatar">{user?.fullName.charAt(0)}</div>
+        <div className="profile-avatar">{user?.fullName.charAt(0) ?? '?'}</div>
         <div className="profile-dropdown">
           <div className="profile-info">
             <p className="profile-name">{user?.fullName}</p>
