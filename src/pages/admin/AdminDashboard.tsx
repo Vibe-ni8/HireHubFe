@@ -8,21 +8,25 @@ import Spinner from "../../components/Spinner";
 export default function AdminDashboard() {
 
   const [detail, setDetail] = useState<AdminDashboardDetails | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   
     useEffect(() => {
+      setLoading(true);
       getAdminDashboardDetails()
         .then((response) => {
           const result = HandleApiResponse(response);
-          setDetail(result.data ?? null)
+          setDetail(result.data ?? null);
+          setLoading(false);
         })
         .catch((err: AxiosError<BaseResponse>) => {
           HandleApiErrors(err);
+          setLoading(false);
         });
     }, []);
 
   return (
     <div className="admin-dashboard">
-      <Spinner show={detail === null}/>
+      <Spinner show={loading}/>
 
       <label>User</label>
       <div className="dashboard-cards">

@@ -5,26 +5,36 @@ import { useAuth } from "../../auth/AuthContext";
 import { getUser } from "../../services/Auth.service";
 import { HandleApiErrors, HandleApiResponse } from "../../helper/HelperMethods";
 import type { AxiosError } from "axios";
+import Spinner from "../../components/Spinner";
 
 export default function CurrentUserProfile() {
 
   const { getUserId } = useAuth();
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
     
   useEffect(() => {
       let userId = getUserId();
+      setLoading(true);
       getUser(userId!)
         .then((response) => {
           const result = HandleApiResponse(response);
           setUser(result.data ?? null);
+          setLoading(false);
         })
         .catch((err: AxiosError<BaseResponse>) => {
           HandleApiErrors(err);
+          setLoading(false);
         });
     }, []);
 
   if (!user) {
-    return <div className="cu-profile-loading">Loading profile...</div>;
+    return (
+      <>
+        <Spinner show={loading}/>
+        <div className="cu-profile-loading">profile...</div>
+      </>
+    );
   }
   return (
     <div className="cu-profile-page">

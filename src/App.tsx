@@ -9,6 +9,7 @@ import AdminLayout from "./pages/admin/AdminLayout"
 import AdminDashboard from "./pages/admin/AdminDashboard"
 import { ToastContainer } from "react-toastify"
 import CurrentUserProfile from "./pages/current/CurrentUserProfile"
+import Users from "./pages/admin/Users"
 
 export default function App() {
   return (
@@ -25,7 +26,10 @@ export default function App() {
               <Route path="" element={<Navigate to="dashboard" replace />} />
               <Route path="dashboard" element={<AdminDashboard />} />
               <Route path="my/profile" element={<CurrentUserProfile />} />
-              <Route path="user" element={<UserManagement />} />
+              <Route path="user" element={<UserManagement />} >
+                <Route path="" element={<Navigate to="management" replace />} />
+                <Route path="management" element={<Users/>} />
+              </Route>
             </Route>
           </Route>
 

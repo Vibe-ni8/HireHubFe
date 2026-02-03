@@ -202,7 +202,7 @@
   transform: translateX(2px);
 }
 
-.profile-dropdown button {
+.profile-dropdown .danger button {
   width: 100%;
   padding: 12px 14px;
   margin-top: auto;
@@ -217,7 +217,7 @@
   transition: background 0.25s, color 0.25s, transform 0.15s;
 }
 
-.profile-dropdown button:hover {
+.profile-dropdown .danger button:hover {
   background: rgba(220, 38, 38, 0.1);
   transform: translateX(2px);
 }
@@ -286,6 +286,8 @@
 @media (max-width: 668px) {
   .admin-layout {
     flex-direction: column;
+    width: 100vw;
+    height: 100vh;
   }
 
   .admin-navbar {
@@ -340,47 +342,3 @@
   }
 }
 
-
-
-
-
-.table-container {
-  background: white;
-  border-radius: 12px;
-  padding: 20px;
-  margin-top: 24px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  padding: 12px 14px;
-  font-size: 14px;
-  text-align: left;
-}
-
-th {
-  background-color: #f1f5f9;
-  color: #475569;
-}
-
-tr:not(:last-child) td {
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.btn {
-  padding: 6px 12px;
-  font-size: 13px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-edit { background: #2563eb; color: white; }
-.btn-disable { background: #dc2626; color: white; }
-.btn-enable { background: #16a34a; color: white; }

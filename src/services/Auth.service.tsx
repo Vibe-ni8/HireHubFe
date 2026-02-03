@@ -10,6 +10,11 @@ export function getUser(userId: number) {
     return api.get<Response<User>>(`User/fetch/${userId}/test`)
 }
 
+export function getUsers(role: string | null, isActive: boolean | null, 
+pageNumber: number | null, pageSize: number | null) {
+    return api.get<Response<Array<User>>>(`User/fetch/all/test`, { params: {role, isActive, pageNumber, pageSize} });
+}
+
 export function getAdminDashboardDetails() {
     return api.get<Response<AdminDashboardDetails>>('Admin/dashboard/details/test')
 }

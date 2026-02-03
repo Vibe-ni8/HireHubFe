@@ -1,0 +1,172 @@
+.user-management {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    height: 80vh;
+}
+.user-management::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.um-page {
+  background: #ffffff;
+  padding: 20px;
+  width: 75vw;
+}
+
+/* Header */
+.um-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.um-header h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #0f172a;
+}
+
+.um-add-btn {
+  background: #0f172a;
+  color: white;
+  border: none;
+  padding: 10px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.um-add-btn:hover {
+  background: linear-gradient(135deg, #a9b5cd, #0b0d10);
+}
+
+/* Filters */
+.um-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.um-filters input,
+.um-filters select {
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+}
+
+/* Table */
+.um-table-wrapper {
+  border-radius: 12px;
+  overflow-x: auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.um-table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.um-table-wrapper th {
+  background: #f8fafc;
+  text-align: left;
+  padding: 14px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.um-table-wrapper td {
+  padding: 14px;
+  font-size: 14px;
+  color: #0f172a;
+}
+
+.um-table-scroll {
+  display: block;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height: 60vh;
+}
+.um-table-scroll::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.um-table-wrapper tbody tr {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.um-table-wrapper tbody tr:hover {
+  background: #f1f5f9;
+}
+
+.um-active {
+  color: #16a34a;
+  font-weight: 500;
+}
+
+.um-inactive {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.um-empty {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+}
+
+.um-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.um-pagination button {
+  border-radius: 16px;
+  padding: 6px 9px;
+  border-style: none;
+  background-color: transparent;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.um-pagination button:hover:not(:disabled) {
+  background-color: #47494b;
+  color: #fff;
+}
+
+.um-pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.um-pagination span {
+  min-width: 32px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #0b0d10;
+}
+
+
+@media (max-width: 668px) {
+    .um-page {
+      width: 85vw;
+    }
+
+    .um-filters {
+      overflow-x: scroll;
+    }
+}
+

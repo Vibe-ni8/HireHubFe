@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 import { useEffect, useState } from "react";
 import { getUser } from "../../services/Auth.service";
@@ -9,18 +9,23 @@ import Spinner from "../../components/Spinner";
 
 export default function AdminHeader() {
 
+  const navigate = useNavigate();
   const { logout, getUserId } = useAuth();
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     let userId = getUserId();
+    setLoading(true);
     getUser(userId!)
       .then((response) => {
         const result = HandleApiResponse(response);
         setUser(result.data ?? null);
+        setLoading(false);
       })
       .catch((err: AxiosError<BaseResponse>) => {
         HandleApiErrors(err);
+        setLoading(false);
       });
   }, []);
     
@@ -30,7 +35,7 @@ export default function AdminHeader() {
   
   return (
     <div className="admin-header">
-      <Spinner show={user === null}/>
+      <Spinner show={loading}/>
       <h2>👋Welcome back, {user?.fullName ?? '?'}</h2>
       <div className="admin-profile">
         <div className="profile-avatar">{user?.fullName.charAt(0)}</div>
