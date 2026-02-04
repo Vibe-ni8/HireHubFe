@@ -33,6 +33,22 @@ export interface User {
     updatedDate?: Date | null;
 }
 
+export interface Candidate {
+    candidateId: number;
+    fullName: string;
+    email: string;
+    phone: string;
+    address: string | null;
+    college: string | null;
+    previousCompany: string | null;
+    candidateExperienceLevel: string;
+    techStack: Array<string>;
+    resumeUrl: string | null;
+    linkedInUrl: string | null;
+    gitHubUrl: string | null;
+    createdDate: Date;
+}
+
 export interface LoginResponse extends Response<string> {
 }
 

@@ -1,6 +1,6 @@
 import api from './axios'
-import type { AddUserRequest, LoginRequest } from '../dto/Request'
-import type { LoginResponse, User, Response, AdminDashboardDetails } from '../dto/Response'
+import type { AddCandidateRequest, AddUserRequest, LoginRequest } from '../dto/Request'
+import type { LoginResponse, User, Response, AdminDashboardDetails, Candidate } from '../dto/Response'
 
 export function getToken(request: LoginRequest) {
     return api.post<LoginResponse>('Auth/token', request);
@@ -12,7 +12,9 @@ export function getUser(userId: number) {
 
 export function getUsers(role: string | null, isActive: boolean | null, 
 pageNumber: number | null, pageSize: number | null) {
-    return api.get<Response<Array<User>>>('User/fetch/all/test', { params: {role, isActive, pageNumber, pageSize} });
+    return api.get<Response<Array<User>>>('User/fetch/all/test', { 
+        params: {role, isActive, pageNumber, pageSize} 
+    });
 }
 
 export function editUser(payload: any) {
@@ -21,6 +23,25 @@ export function editUser(payload: any) {
 
 export function addUser(payload: AddUserRequest) {
     return api.post<Response<User>>('User/add/test', payload);
+}
+
+export function getCandidate(candidateId: number) {
+    return api.get<Response<Candidate>>(`Candidate/fetch/${candidateId}/test`)
+}
+
+export function getCandidates(experienceLevel: string | null, isLatestFirst: boolean | null, 
+pageNumber: number | null, pageSize: number | null) {
+    return api.get<Response<Array<Candidate>>>('Candidate/fetch/all/test', { 
+        params: {experienceLevel, isLatestFirst, pageNumber, pageSize} 
+    });
+}
+
+export function editCandidate(payload: any) {
+    return api.post<Response<Candidate>>('Candidate/edit/test', payload);
+}
+
+export function addCandidate(payload: AddCandidateRequest) {
+    return api.post<Response<Candidate>>('Candidate/add/test', payload);
 }
 
 export function getAdminDashboardDetails() {

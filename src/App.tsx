@@ -12,6 +12,10 @@ import CurrentUserProfile from "./pages/current/CurrentUserProfile"
 import Users from "./pages/admin/userManagement/Users"
 import UserDetail from "./pages/admin/userManagement/UserDetail"
 import AddUser from "./pages/admin/userManagement/AddUser"
+import CandidateManagement from "./pages/admin/candidateManagement/candidateManagement"
+import Candidates from "./pages/admin/candidateManagement/Candidates"
+import CandidateDetail from "./pages/admin/candidateManagement/CandidateDetail"
+import AddCandidate from "./pages/admin/candidateManagement/AddCandidate"
 
 export default function App() {
   return (
@@ -39,6 +43,13 @@ export default function App() {
                 <Route path="management" element={<Users/>} />
                 <Route path="detail/:id" element={<UserDetail/>} />
                 <Route path="add" element={<AddUser/>} />
+              </Route>
+
+              <Route path="candidate" element={<CandidateManagement />} >
+                <Route path="" element={<Navigate to="management" replace />} />
+                <Route path="management" element={<Candidates/>} />
+                <Route path="detail/:id" element={<CandidateDetail/>} />
+                <Route path="add" element={<AddCandidate/>} />
               </Route>
               
             </Route>

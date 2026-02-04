@@ -20,7 +20,7 @@ export default function AdminNavbar() {
           <NavLink to="/admin/user/management">User</NavLink>
         </li>
         <li>
-          <NavLink to="/admin/candidate">Candidate</NavLink>
+          <NavLink to="/admin/candidate/management">Candidate</NavLink>
         </li>
         <li>
           <NavLink to="/admin/drive">Drive</NavLink>
