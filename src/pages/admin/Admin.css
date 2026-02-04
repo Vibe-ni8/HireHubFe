@@ -311,6 +311,11 @@
     flex-direction: row;
     gap: 3px;
     overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .admin-navbar ul::-webkit-scrollbar {
+    width: 0;
+    height: 0;
   }
 
   .admin-navbar li {

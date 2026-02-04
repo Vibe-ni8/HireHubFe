@@ -46,7 +46,8 @@ export default function UserDetail() {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
     setEditLoading(true);
     editUser({userId:user?.userId, ...payload})
       .then((response) => {
@@ -77,7 +78,7 @@ export default function UserDetail() {
   );
   if (!user) return <div className="ud-notfound">User not found</div>;
   return (
-    <div className="user-detail">
+    <form className="user-detail" onSubmit={handleSubmit}>
       <Spinner show={editLoading}/>
       <div className="ud-head">
         <h2>User Detail</h2>
@@ -89,7 +90,7 @@ export default function UserDetail() {
       <div className="ud-detail-row">
         <label>Full Name:</label>
         {isEditMode ? (
-          <input name="fullName" value={editedUser?.fullName ?? ''} onChange={handleChange}/>
+          <input name="fullName" required value={editedUser?.fullName ?? ''} onChange={handleChange}/>
         ) : (
           <span>{user.fullName}</span>
         )}
@@ -98,7 +99,7 @@ export default function UserDetail() {
       <div className="ud-detail-row">
         <label>Email:</label>
         {isEditMode ? (
-          <input name="email" value={editedUser?.email ?? ''} onChange={handleChange}/>
+          <input name="email" required value={editedUser?.email ?? ''} onChange={handleChange}/>
         ) : (
           <span>{user.email}</span>
         )}
@@ -107,7 +108,7 @@ export default function UserDetail() {
       <div className="ud-detail-row">
         <label>Phone:</label>
         {isEditMode ? (
-          <input name="phone" value={editedUser?.phone ?? ''} onChange={handleChange}/>
+          <input name="phone" required value={editedUser?.phone ?? ''} onChange={handleChange}/>
         ) : (
           <span>{user.phone}</span>
         )}
@@ -118,7 +119,7 @@ export default function UserDetail() {
         <span>{user.roleName}</span>
       </div>
 
-      <div className="ud-detail-row ud-checkbox">
+      <div className="ud-detail-row">
         <label>Status:</label>
         {isEditMode ? (
           <input type="checkbox" name="isActive" checked={editedUser?.isActive ?? false} 
@@ -137,14 +138,14 @@ export default function UserDetail() {
 
       {isEditMode && (
         <div className="ud-actions">
-          <button className="btn-save" onClick={handleSubmit}>
+          <button type="submit" className="btn-save">
             Save
           </button>
-          <button className="btn-cancel" onClick={handleCancel}>
+          <button type="button" className="btn-cancel" onClick={handleCancel}>
             Cancel
           </button>
         </div>
       )}
-    </div>
+    </form>
   );
 }
