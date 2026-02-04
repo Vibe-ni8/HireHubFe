@@ -1,5 +1,5 @@
 import api from './axios'
-import type { LoginRequest } from '../dto/Request'
+import type { AddUserRequest, LoginRequest } from '../dto/Request'
 import type { LoginResponse, User, Response, AdminDashboardDetails } from '../dto/Response'
 
 export function getToken(request: LoginRequest) {
@@ -12,11 +12,15 @@ export function getUser(userId: number) {
 
 export function getUsers(role: string | null, isActive: boolean | null, 
 pageNumber: number | null, pageSize: number | null) {
-    return api.get<Response<Array<User>>>(`User/fetch/all/test`, { params: {role, isActive, pageNumber, pageSize} });
+    return api.get<Response<Array<User>>>('User/fetch/all/test', { params: {role, isActive, pageNumber, pageSize} });
 }
 
 export function editUser(payload: any) {
-    return api.post<Response<User>>(`User/edit/test`, payload);
+    return api.post<Response<User>>('User/edit/test', payload);
+}
+
+export function addUser(payload: AddUserRequest) {
+    return api.post<Response<User>>('User/add/test', payload);
 }
 
 export function getAdminDashboardDetails() {

@@ -74,7 +74,9 @@ export default function Users() {
         <select value={roleFilter} onChange={(e) => setRoleFilter(e.target.value)}>
           <option value="all">All Roles</option>
           <option value="Admin">Admin</option>
-          <option value="User">User</option>
+          <option value="HR">HR</option>
+          <option value="Panel">Panel</option>
+          <option value="Mentor">Mentor</option>
         </select>
       </div>
 

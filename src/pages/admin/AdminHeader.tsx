@@ -45,7 +45,7 @@ export default function AdminHeader() {
           </div>
           <ul>
             <li><NavLink to="my">My Profile</NavLink></li>
-            <li><NavLink to="#">Settings</NavLink></li>
+            <li><NavLink to="my/settings">Settings</NavLink></li>
             <li className="danger">
               <button onClick={handleLogout}>Logout</button>
             </li>

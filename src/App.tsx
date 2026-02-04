@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify"
 import CurrentUserProfile from "./pages/current/CurrentUserProfile"
 import Users from "./pages/admin/userManagement/Users"
 import UserDetail from "./pages/admin/userManagement/UserDetail"
+import AddUser from "./pages/admin/userManagement/AddUser"
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
                 <Route path="" element={<Navigate to="management" replace />} />
                 <Route path="management" element={<Users/>} />
                 <Route path="detail/:id" element={<UserDetail/>} />
+                <Route path="add" element={<AddUser/>} />
               </Route>
               
             </Route>
