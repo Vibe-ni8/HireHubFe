@@ -12,7 +12,7 @@ export default function AddUser() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState<boolean>(false);
     const [user, setUser] = useState<AddUserRequest>({
-        fullName: '', email: '', phone: '', roleName: 'Hr', password: ''
+        fullName: '', email: '', phone: '', roleName: 'Hr', password: 'Welcome@123'
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -51,19 +51,19 @@ export default function AddUser() {
             {/* Add User Section */}
             <form className="add-user-section" onSubmit={handleSubmit}>
                 <div className="au-input-block">
-                    <label>Full Name:</label>
+                    <label>Full Name*:</label>
                     <input type="text" name="fullName" required value={user.fullName} onChange={handleChange} />
                 </div>
                 <div className="au-input-block">
-                    <label>Email:</label>
+                    <label>Email*:</label>
                     <input type="text" name="email" required value={user.email} onChange={handleChange} placeholder="you@company.com" />
                 </div>
                 <div className="au-input-block">
-                    <label>Phone:</label>
+                    <label>Phone*:</label>
                     <input type="number" name="phone" required value={user.phone} onChange={handleChange} placeholder="+91  _ _ _ _ _ _ _ _ _ _" />
                 </div>
                 <div className="au-input-block">
-                    <label>Role:</label>
+                    <label>Role*:</label>
                     <select name="roleName" required value={user.roleName} onChange={handleChange} >
                         <option value={''}>Select</option>
                         <option value={'HR'}>HR</option>
@@ -73,7 +73,7 @@ export default function AddUser() {
                     </select>
                 </div>
                 <div className="au-input-block">
-                    <label>Password:</label>
+                    <label>Password*:</label>
                     <input type="password" name="password" required value={user.password} onChange={handleChange} />
                 </div>
                 <div className="au-button-block">

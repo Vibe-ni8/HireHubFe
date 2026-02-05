@@ -121,7 +121,7 @@ export default function CandidateDetail() {
       </div>
 
       <div className="cd-detail-row">
-        <label>Full Name:</label>
+        <label>Full Name{isEditMode ? '*' : ''}:</label>
         {isEditMode ? (
           <input name="fullName" required value={editedCandidate?.fullName ?? ''} onChange={handleChange}/>
         ) : (
@@ -130,7 +130,7 @@ export default function CandidateDetail() {
       </div>
 
       <div className="cd-detail-row">
-        <label>Email:</label>
+        <label>Email{isEditMode ? '*' : ''}:</label>
         {isEditMode ? (
           <input name="email" required value={editedCandidate?.email ?? ''} onChange={handleChange}/>
         ) : (
@@ -139,7 +139,7 @@ export default function CandidateDetail() {
       </div>
 
       <div className="cd-detail-row">
-        <label>Phone:</label>
+        <label>Phone{isEditMode ? '*' : ''}:</label>
         {isEditMode ? (
           <input name="phone" required value={editedCandidate?.phone ?? ''} onChange={handleChange}/>
         ) : (
@@ -176,7 +176,7 @@ export default function CandidateDetail() {
       </div>
 
       <div className="cd-detail-row">
-        <label>Experience:</label>
+        <label>Experience{isEditMode ? '*' : ''}:</label>
         {isEditMode ? (
           <select name="experienceLevel" required value={editedCandidate?.candidateExperienceLevel ?? ''} 
           onChange={handleChange} >

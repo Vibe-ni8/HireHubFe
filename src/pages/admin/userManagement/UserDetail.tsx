@@ -88,7 +88,7 @@ export default function UserDetail() {
       </div>
 
       <div className="ud-detail-row">
-        <label>Full Name:</label>
+        <label>Full Name{isEditMode ? '*' : ''}:</label>
         {isEditMode ? (
           <input name="fullName" required value={editedUser?.fullName ?? ''} onChange={handleChange}/>
         ) : (
@@ -97,7 +97,7 @@ export default function UserDetail() {
       </div>
 
       <div className="ud-detail-row">
-        <label>Email:</label>
+        <label>Email{isEditMode ? '*' : ''}:</label>
         {isEditMode ? (
           <input name="email" required value={editedUser?.email ?? ''} onChange={handleChange}/>
         ) : (
@@ -106,7 +106,7 @@ export default function UserDetail() {
       </div>
 
       <div className="ud-detail-row">
-        <label>Phone:</label>
+        <label>Phone{isEditMode ? '*' : ''}:</label>
         {isEditMode ? (
           <input name="phone" required value={editedUser?.phone ?? ''} onChange={handleChange}/>
         ) : (
