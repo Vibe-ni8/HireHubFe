@@ -15,6 +15,7 @@ export default function Users() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [roleFilter, setRoleFilter] = useState<string>("all");
+  const [isLatestFirstFilter, setIsLatestFirstFilter] = useState<string>("a to z");
   const [page, setPage] = useState<number>(1);
   const pageSize = 10;
 
@@ -22,7 +23,8 @@ export default function Users() {
       setLoading(true);
       let isActive = statusFilter === 'active' ? true : statusFilter === 'inactive' ? false : null;
       let role = roleFilter === 'all' ? null : roleFilter;
-      getUsers(role, isActive, page, pageSize)
+      let isLatestFirst = isLatestFirstFilter === 'a to z' ? null : isLatestFirstFilter === 'latest' ? true :  false;
+      getUsers(role, isActive, isLatestFirst, page, pageSize)
         .then((response) => {
           const result = HandleApiResponse(response);
           setUsers(result.data ?? null);
@@ -32,7 +34,7 @@ export default function Users() {
           HandleApiErrors(err);
           setLoading(false);
         });
-    }, [statusFilter, roleFilter, page]);
+    }, [statusFilter, roleFilter, isLatestFirstFilter, page]);
 
   const filteredUsers = useMemo(() => {
     return users === null ? [] : users.filter((u) => {
@@ -77,6 +79,12 @@ export default function Users() {
           <option value="HR">HR</option>
           <option value="Panel">Panel</option>
           <option value="Mentor">Mentor</option>
+        </select>
+
+        <select value={isLatestFirstFilter} onChange={(e) => setIsLatestFirstFilter(e.target.value)}>
+          <option value="a to z">A to Z</option>
+          <option value="latest">Latest First </option>
+          <option value="oldest">Oldest First </option>
         </select>
       </div>
 

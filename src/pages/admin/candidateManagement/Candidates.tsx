@@ -14,7 +14,7 @@ export default function Candidates() {
 
   const [candidates, setCandidates] = useState<Array<Candidate> | null>(null);
   const [search, setSearch] = useState("");
-  const [isLatestFirstFilter, setIsLatestFirstFilter] = useState<string>("latest");
+  const [isLatestFirstFilter, setIsLatestFirstFilter] = useState<string>("a to z");
   const [experienceLevelFilter, setExperienceLevelFilter] = useState<string>("all");
   const [page, setPage] = useState<number>(1);
   const pageSize = 10;
@@ -25,7 +25,7 @@ export default function Candidates() {
 
   useEffect(() => {
       setLoading(true);
-      let isLatestFirst = isLatestFirstFilter === 'latest' ? true :  false;
+      let isLatestFirst = isLatestFirstFilter === 'a to z' ? null : isLatestFirstFilter === 'latest' ? true :  false;
       let experienceLevel = experienceLevelFilter === 'all' ? null : experienceLevelFilter;
       getCandidates(experienceLevel, isLatestFirst, page, pageSize)
         .then((response) => {
@@ -128,8 +128,9 @@ export default function Candidates() {
         />
 
         <select value={isLatestFirstFilter} onChange={(e) => setIsLatestFirstFilter(e.target.value)}>
-          <option value="latest">Latest</option>
-          <option value="oldest">Oldest</option>
+          <option value="a to z">A to Z</option>
+          <option value="latest">Latest First </option>
+          <option value="oldest">Oldest First </option>
         </select>
 
         <select value={experienceLevelFilter} onChange={(e) => setExperienceLevelFilter(e.target.value)}>

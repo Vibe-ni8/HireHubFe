@@ -10,10 +10,12 @@ export function getUser(userId: number) {
     return api.get<Response<User>>(`User/fetch/${userId}/test`)
 }
 
-export function getUsers(role: string | null, isActive: boolean | null, 
-pageNumber: number | null, pageSize: number | null) {
+export function getUsers(role: string | null = null, 
+isActive: boolean | null = null, isLatestFirst: boolean | null = null, 
+pageNumber: number | null = null, pageSize: number | null = null, 
+startDate: Date | null = null, endDate: Date | null = null) {
     return api.get<Response<Array<User>>>('User/fetch/all/test', { 
-        params: {role, isActive, pageNumber, pageSize} 
+        params: {role, isActive, isLatestFirst, pageNumber, pageSize, startDate, endDate} 
     });
 }
 
@@ -29,10 +31,12 @@ export function getCandidate(candidateId: number) {
     return api.get<Response<Candidate>>(`Candidate/fetch/${candidateId}/test`)
 }
 
-export function getCandidates(experienceLevel: string | null, isLatestFirst: boolean | null, 
-pageNumber: number | null, pageSize: number | null) {
+export function getCandidates(experienceLevel: string | null = null, 
+isLatestFirst: boolean | null = null, 
+pageNumber: number | null, pageSize: number | null, 
+startDate: Date | null = null, endDate: Date | null = null) {
     return api.get<Response<Array<Candidate>>>('Candidate/fetch/all/test', { 
-        params: {experienceLevel, isLatestFirst, pageNumber, pageSize} 
+        params: {experienceLevel, isLatestFirst, pageNumber, pageSize, startDate, endDate} 
     });
 }
 
