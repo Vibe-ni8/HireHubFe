@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import type { BaseResponse, User } from "../../../dto/Response";
 import Spinner from "../../../components/Spinner";
-import { editUser, getUser } from "../../../services/Auth.service";
+import { editUser, getDriveMembers, getUser } from "../../../services/Auth.service";
 import { HandleApiErrors, HandleApiResponse } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import { FaPencilAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 export default function UserDetail() {
 
@@ -33,6 +34,12 @@ export default function UserDetail() {
       });
   }, []);
 
+  const enterEditMode = () => {
+    setEditedUser(user); 
+    setPayload({ userId: user?.userId });
+    setEditMode(true);
+  }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!editedUser) return;
     const { name, value, type, checked } = e.target;
@@ -46,10 +53,8 @@ export default function UserDetail() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setEditLoading(true);
-    editUser({userId:user?.userId, ...payload})
+  const postDateToServer = () => {
+    editUser(payload)
       .then((response) => {
         const result = HandleApiResponse(response);
         setUser(result.data ?? null);
@@ -62,6 +67,32 @@ export default function UserDetail() {
         HandleApiErrors(err);
         setEditLoading(false);
       });
+  }
+
+  const confirmMessage = 'This user is part of one or more upcoming drives. Inactivating will affect those drives. Continue?';
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setEditLoading(true);
+    let haveUpcomingDrive: boolean = false;
+    if (payload.isActive === false)
+    {
+      getDriveMembers(null, userId, null, null, null, false, 1, 1)
+        .then((response) => {
+          haveUpcomingDrive = response.data.data!.length > 0;
+          const proceed = haveUpcomingDrive ? window.confirm(confirmMessage) : true;
+          if (proceed)
+            postDateToServer();
+          else {
+            setEditLoading(false);
+          }
+        })
+        .catch(() => {
+          toast.error('Unable to proceed now. Try again later');
+          setEditLoading(false);
+        });
+    }
+    else
+      postDateToServer();
   };
 
   const handleCancel = () => {
@@ -82,7 +113,7 @@ export default function UserDetail() {
       <Spinner show={editLoading}/>
       <div className="ud-head">
         <h2>User Detail</h2>
-        {!isEditMode && <button onClick={() => {setEditedUser(user); setEditMode(true);}}>
+        {!isEditMode && <button onClick={enterEditMode}>
           <FaPencilAlt />
         </button>}
       </div>

@@ -1,10 +1,14 @@
 import api from './axios'
 import type { AddCandidateRequest, AddUserRequest, LoginRequest } from '../dto/Request'
-import type { LoginResponse, User, Response, AdminDashboardDetails, Candidate } from '../dto/Response'
+import type { LoginResponse, User, Response, AdminDashboardDetails, Candidate, DriveMember } from '../dto/Response'
+
+/* Auth */
 
 export function getToken(request: LoginRequest) {
     return api.post<LoginResponse>('Auth/token', request);
 }
+
+/* User */
 
 export function getUser(userId: number) {
     return api.get<Response<User>>(`User/fetch/${userId}/test`)
@@ -26,6 +30,8 @@ export function editUser(payload: any) {
 export function addUser(payload: AddUserRequest) {
     return api.post<Response<User>>('User/add/test', payload);
 }
+
+/* Candidate */
 
 export function getCandidate(candidateId: number) {
     return api.get<Response<Candidate>>(`Candidate/fetch/${candidateId}/test`)
@@ -54,6 +60,21 @@ export function candidateBulkUpload(file: File) {
         headers: { "Content-Type": "multipart/form-data"}
     });
 }
+
+/* Drive */
+
+export function getDriveMembers(driveId: number | null = null, userId: number | null = null, 
+role: string | null = null, driveStatus: string | null = null,
+isLatestFirst: boolean | null = null, includePastDrives: boolean = false, 
+pageNumber: number | null = null, pageSize: number | null = null, 
+startDate: Date | null = null, endDate: Date | null = null) {
+    return api.get<Response<Array<DriveMember>>>('Drive/member/fetch/all/test', { 
+        params: {driveId, userId, role, driveStatus, isLatestFirst, 
+        includePastDrives, pageNumber, pageSize, startDate, endDate } 
+    });
+}
+
+/* Admin */
 
 export function getAdminDashboardDetails() {
     return api.get<Response<AdminDashboardDetails>>('Admin/dashboard/details/test')

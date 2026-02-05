@@ -49,6 +49,19 @@ export interface Candidate {
     createdDate: Date;
 }
 
+export interface DriveMember {
+    driverMemberId: number;
+    driveId: number;
+    driveName: string;
+    driveDate: Date;
+    driveStatus: string;
+    userId: number;
+    userName: string;
+    userEmail: string;
+    roleId: number;
+    roleName: string;
+}
+
 export interface LoginResponse extends Response<string> {
 }
 
