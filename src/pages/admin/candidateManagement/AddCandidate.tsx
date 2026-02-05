@@ -32,36 +32,36 @@ export default function AddCandidate() {
     }
 
     const addTech = () => {
-        if (!newTech.trim() || candidate.techStack.includes(newTech.trim())) {
-          setNewTech('');
-          return;
-        }
-        let updatedTechStack = [ ...candidate.techStack, newTech.trim() ];
-        setCandidate({ ...candidate, techStack: updatedTechStack });
+      if (!newTech.trim() || candidate.techStack.includes(newTech.trim())) {
         setNewTech('');
-  }
-
-  const addTechInsteadSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') { 
-      e.preventDefault(); 
-      addTech();   
+        return;
+      }
+      let updatedTechStack = [ ...candidate.techStack, newTech.trim() ];
+      setCandidate({ ...candidate, techStack: updatedTechStack });
+      setNewTech('');
     }
-  }
+
+    const addTechInsteadSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') { 
+        e.preventDefault(); 
+        addTech();   
+      }
+    }
 
     const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        setLoading(true);
-        addCandidate(candidate)
-          .then((response) => {
-            let result = HandleApiResponse(response);
-            setLoading(false);
-            navigate(`/admin/candidate/detail/${result.data?.candidateId}`);
-          })
-          .catch((err: AxiosError<BaseResponse>) => {
-            HandleApiErrors(err);
-            setLoading(false);
-          });
-      };
+      e.preventDefault();
+      setLoading(true);
+      addCandidate(candidate)
+        .then((response) => {
+          let result = HandleApiResponse(response);
+          setLoading(false);
+          navigate(`/admin/candidate/detail/${result.data?.candidateId}`);
+        })
+        .catch((err: AxiosError<BaseResponse>) => {
+          HandleApiErrors(err);
+          setLoading(false);
+        });
+    };
     
     return (
         <div className="cm-page">
