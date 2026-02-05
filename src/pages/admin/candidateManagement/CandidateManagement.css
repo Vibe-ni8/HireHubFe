@@ -302,10 +302,13 @@ span.cd-tag {
   padding: 0px;
   border-radius: 50%;
   border: none;
-  background: #2563eb;
+  background: linear-gradient(0deg, #297df3, #ffffff);
   color: white;
   font-size: 12px;
   cursor: pointer;
+}
+.cd-add button:hover {
+  background: linear-gradient(0deg, #297df3, #ba9ae0);
 }
 
 .add-candidate-section {
