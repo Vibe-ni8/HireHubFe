@@ -322,6 +322,11 @@ span.cd-tag {
   margin: 8px 0px;
 }
 
+.ac-teckstack {
+  display: block;
+  width: 270px;
+}
+
 .ac-input-block label {
   color: #000;
   width: 120px;
