@@ -12,10 +12,10 @@ import CurrentUserProfile from "./pages/current/CurrentUserProfile"
 import Users from "./pages/admin/userManagement/Users"
 import UserDetail from "./pages/admin/userManagement/UserDetail"
 import AddUser from "./pages/admin/userManagement/AddUser"
-import CandidateManagement from "./pages/admin/candidateManagement/candidateManagement"
 import Candidates from "./pages/admin/candidateManagement/Candidates"
 import CandidateDetail from "./pages/admin/candidateManagement/CandidateDetail"
 import AddCandidate from "./pages/admin/candidateManagement/AddCandidate"
+import CandidateManagement from "./pages/admin/candidateManagement/CandidateManagement"
 
 export default function App() {
   return (
@@ -66,14 +66,8 @@ export default function App() {
           </Route> */}
 
         </Routes>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          pauseOnHover
-          theme="colored"
+        <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false}
+          newestOnTop closeOnClick pauseOnHover theme="colored"
         />
       </>
   );
