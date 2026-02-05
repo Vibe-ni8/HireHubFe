@@ -44,6 +44,13 @@ export function addCandidate(payload: AddCandidateRequest) {
     return api.post<Response<Candidate>>('Candidate/add/test', payload);
 }
 
+export function candidateBulkUpload(file: File) {
+    const formData = new FormData().append("file", file);
+    return api.post<Response<Array<number>>>('Candidate/upload/bulk/test', formData, {
+        headers: { "Content-Type": "multipart/form-data"}
+    });
+}
+
 export function getAdminDashboardDetails() {
     return api.get<Response<AdminDashboardDetails>>('Admin/dashboard/details/test')
 }

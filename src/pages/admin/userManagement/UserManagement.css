@@ -39,6 +39,7 @@
   border-radius: 8px;
   font-size: 14px;
   cursor: pointer;
+  margin-left: 5px;
 }
 
 .um-add-btn:hover {
@@ -331,16 +332,15 @@ input.ud-checkbox {
 }
 
 .au-button-block button {
-  background: linear-gradient(0deg, #297df3, #ffffff);
+  background: linear-gradient(0deg, #297df3, #e4d9f1);
   color: white;
   border: none;
   padding: 6px 12px;
   border-radius: 8px;
   margin-left: 300px;
 }
-
 .au-button-block button:hover {
-  background: linear-gradient(0deg, #297df3, #ba9ae0);
+  background: linear-gradient(0deg, #297df3, #ffffff);
 }
 
 

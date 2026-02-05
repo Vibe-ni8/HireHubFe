@@ -31,7 +31,13 @@
   color: #0f172a;
 }
 
-.cm-add-btn {
+.cm-button-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cm-btn {
   background: #0f172a;
   color: white;
   border: none;
@@ -41,8 +47,20 @@
   cursor: pointer;
 }
 
+.cm-add-btn {
+  background: #0f172a;
+}
 .cm-add-btn:hover {
   background: linear-gradient(135deg, #a9b5cd, #0b0d10);
+}
+
+.cm-bulk-upload-btn {
+  background: #f4a953;
+  color: #000;
+  margin: 0px 5px;
+}
+.cm-bulk-upload-btn:hover {
+  background: linear-gradient(135deg, #a9b5cd, #f4a953);
 }
 
 /* Filters */
@@ -157,6 +175,62 @@
   font-weight: 600;
   font-size: 14px;
   color: #0b0d10;
+}
+
+.cm-bulk-upload-wrapper {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.cm-bulk-upload-panel {
+  position: absolute;
+  top: 0;
+  right: 30;
+  width: 300px;
+  padding: 12px;
+  background: #fff;
+  color: #000;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  z-index: 100;
+}
+
+.cm-file-btn {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #f0f0f0;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+}
+
+.cm-file-name {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #555;
+  word-break: break-all;
+}
+
+.cm-upload-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(0deg, #297df3, #e4d9f1);
+  color: white;
+  cursor: pointer;
+}
+.cm-upload-btn:hover {
+  background: linear-gradient(0deg, #297df3, #ffffff);
+}
+.cm-upload-btn:disabled {
+  background: #aaa;
+  cursor: not-allowed;
 }
 
 .candidate-detail {
@@ -302,13 +376,13 @@ span.cd-tag {
   padding: 0px;
   border-radius: 50%;
   border: none;
-  background: linear-gradient(0deg, #297df3, #ffffff);
+  background: linear-gradient(0deg, #297df3, #e4d9f1);
   color: white;
   font-size: 12px;
   cursor: pointer;
 }
 .cd-add button:hover {
-  background: linear-gradient(0deg, #297df3, #ba9ae0);
+  background: linear-gradient(0deg, #297df3, #ffffff);
 }
 
 .add-candidate-section {
@@ -364,16 +438,15 @@ span.cd-tag {
 }
 
 .ac-button-block button {
-  background: linear-gradient(0deg, #297df3, #ffffff);
+  background: linear-gradient(0deg, #297df3, #e4d9f1);
   color: white;
   border: none;
   padding: 6px 12px;
   border-radius: 8px;
   margin-left: 300px;
 }
-
 .ac-button-block button:hover {
-  background: linear-gradient(0deg, #297df3, #ba9ae0);
+  background: linear-gradient(0deg, #297df3, #ffffff);
 }
 
 
