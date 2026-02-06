@@ -4,7 +4,7 @@ import { useAuth } from "../auth/AuthContext"
 import { useNavigate } from "react-router-dom";
 import type { AxiosError } from "axios";
 import type { BaseResponse } from "../dto/Response";
-import { HandleApiErrors, HandleApiResponse } from "../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../helper/HelperMethods";
 
 export default function Login() {
 
@@ -17,7 +17,7 @@ export default function Login() {
     e.preventDefault();
     getToken({username: email, password})
       .then((response) => {
-        const result = HandleApiResponse(response);
+        const result = HandleApiSuccess(response);
         login(result.data!);
         switch(getRole())
         {

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getUser } from "../../services/Auth.service";
 import type { AxiosError } from "axios";
 import type { BaseResponse, User } from "../../dto/Response";
-import { HandleApiErrors, HandleApiResponse } from "../../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../../helper/HelperMethods";
 import Spinner from "../../components/Spinner";
 
 export default function AdminHeader() {
@@ -18,7 +18,7 @@ export default function AdminHeader() {
     setLoading(true);
     getUser(userId!)
       .then((response) => {
-        const result = HandleApiResponse(response);
+        const result = HandleApiSuccess(response);
         setUser(result.data ?? null);
         setLoading(false);
       })

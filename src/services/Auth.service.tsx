@@ -61,6 +61,13 @@ export function candidateBulkUpload(file: File) {
     });
 }
 
+export async function getCandidateBulkUploadTemplate() {
+    const response = await api.get('Candidate/template/bulk-upload/test', {
+        responseType: "blob"
+    });
+    return new Blob([response.data], { type: response.headers["content-type"] });
+}
+
 /* Drive */
 
 export function getDriveMembers(driveId: number | null = null, userId: number | null = null, 

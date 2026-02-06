@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import type { BaseResponse, User } from "../../../dto/Response";
 import Spinner from "../../../components/Spinner";
 import { editUser, getDriveMembers, getUser } from "../../../services/Auth.service";
-import { HandleApiErrors, HandleApiResponse } from "../../../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import { FaPencilAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -24,7 +24,7 @@ export default function UserDetail() {
     setLoading(true);
     getUser(userId)
       .then((response) => {
-        const result = HandleApiResponse(response);
+        const result = HandleApiSuccess(response);
         setUser(result.data ?? null);
         setLoading(false);
       })
@@ -56,7 +56,7 @@ export default function UserDetail() {
   const postDateToServer = () => {
     editUser(payload)
       .then((response) => {
-        const result = HandleApiResponse(response);
+        const result = HandleApiSuccess(response);
         setUser(result.data ?? null);
         setEditedUser(null);
         setPayload({});

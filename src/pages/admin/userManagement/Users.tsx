@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { BaseResponse, User } from "../../../dto/Response";
 import Spinner from "../../../components/Spinner";
-import { HandleApiErrors, HandleApiResponse } from "../../../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import { getUsers } from "../../../services/Auth.service";
 
@@ -26,7 +26,7 @@ export default function Users() {
       let isLatestFirst = isLatestFirstFilter === 'a to z' ? null : isLatestFirstFilter === 'latest' ? true :  false;
       getUsers(role, isActive, isLatestFirst, page, pageSize)
         .then((response) => {
-          const result = HandleApiResponse(response);
+          const result = HandleApiSuccess(response);
           setUsers(result.data ?? null);
           setLoading(false);
         })

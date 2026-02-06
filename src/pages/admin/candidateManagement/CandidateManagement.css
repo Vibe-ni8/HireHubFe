@@ -233,6 +233,20 @@
   cursor: not-allowed;
 }
 
+.cm-template-link {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 13px;
+  text-align: center;
+  color: #297df3;
+  text-decoration: none;
+  font-weight: 500;
+}
+.cm-template-link:hover {
+  text-decoration: underline;
+}
+
+
 .candidate-detail {
   max-width: 600px;
   margin: 0 auto;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Spinner from "../../../components/Spinner";
 import type { AddCandidateRequest } from "../../../dto/Request";
-import { HandleApiErrors, HandleApiResponse } from "../../../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import type { BaseResponse } from "../../../dto/Response";
 import { useNavigate } from "react-router-dom";
@@ -53,7 +53,7 @@ export default function AddCandidate() {
       setLoading(true);
       addCandidate(candidate)
         .then((response) => {
-          let result = HandleApiResponse(response);
+          let result = HandleApiSuccess(response);
           setLoading(false);
           navigate(`/admin/candidate/detail/${result.data?.candidateId}`);
         })

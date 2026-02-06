@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import type { AdminDashboardDetails, BaseResponse } from "../../dto/Response";
 import type { AxiosError } from "axios";
-import { HandleApiErrors, HandleApiResponse } from "../../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../../helper/HelperMethods";
 import { getAdminDashboardDetails } from "../../services/Auth.service";
 import Spinner from "../../components/Spinner";
 
@@ -14,7 +14,7 @@ export default function AdminDashboard() {
       setLoading(true);
       getAdminDashboardDetails()
         .then((response) => {
-          const result = HandleApiResponse(response);
+          const result = HandleApiSuccess(response);
           setDetail(result.data ?? null);
           setLoading(false);
         })

@@ -24,7 +24,7 @@ export function HandleApiErrors(error: AxiosError<BaseResponse>)
     }
 }
 
-export function HandleApiResponse<T extends BaseResponse>(response: AxiosResponse<T>) {
+export function HandleApiSuccess<T extends BaseResponse>(response: AxiosResponse<T>) {
     response.data.warnings.forEach( (value) => {
         toast.warn(value);
     });

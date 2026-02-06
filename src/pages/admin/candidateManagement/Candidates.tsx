@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import type { BaseResponse, Candidate } from "../../../dto/Response";
 import Spinner from "../../../components/Spinner";
-import { HandleApiErrors, HandleApiResponse } from "../../../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
-import { candidateBulkUpload, getCandidates } from "../../../services/Auth.service";
+import { candidateBulkUpload, getCandidateBulkUploadTemplate, getCandidates } from "../../../services/Auth.service";
 
 export default function Candidates() {
   
@@ -22,14 +22,24 @@ export default function Candidates() {
 
   const [showUpload, setShowUpload] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+  const [fileDownloadLink, setFileDownloadLink] = useState<string | null>(null);
 
+  useEffect(() => {
+    getCandidateBulkUploadTemplate()
+      .then(res => {
+        setFileDownloadLink(window.URL.createObjectURL(res));
+      })
+      .catch(() => {
+        setFileDownloadLink(null);
+      })
+  },[]);
   useEffect(() => {
       setLoading(true);
       let isLatestFirst = isLatestFirstFilter === 'a to z' ? null : isLatestFirstFilter === 'latest' ? true :  false;
       let experienceLevel = experienceLevelFilter === 'all' ? null : experienceLevelFilter;
       getCandidates(experienceLevel, isLatestFirst, page, pageSize)
         .then((response) => {
-          const result = HandleApiResponse(response);
+          const result = HandleApiSuccess(response);
           setCandidates(result.data ?? null);
           setLoading(false);
         })
@@ -66,7 +76,7 @@ export default function Candidates() {
     setLoading(true);
     candidateBulkUpload(file)
       .then((response) => {
-        var result = HandleApiResponse(response);
+        var result = HandleApiSuccess(response);
         setBulkUploadResult(result.data!)
         setIsLatestFirstFilter('latest');
         setExperienceLevelFilter('all');
@@ -78,7 +88,7 @@ export default function Candidates() {
         setLoading(false);
       });
   };
-  
+
   return (
     <div className="cm-page">
       {/* Spinner */}
@@ -101,6 +111,13 @@ export default function Candidates() {
       <div className="cm-bulk-upload-wrapper">
       {showUpload && (    
         <div className="cm-bulk-upload-panel">
+          {/* Download template */}
+          {fileDownloadLink && 
+            <Link to={ fileDownloadLink } download className="cm-template-link">
+              Download Template
+            </Link>
+          }
+
           {/* File select */}
           <label className="cm-file-btn">
             Choose File

@@ -3,7 +3,7 @@ import type { BaseResponse, User } from "../../dto/Response";
 import './Current.css';
 import { useAuth } from "../../auth/AuthContext";
 import { getUser } from "../../services/Auth.service";
-import { HandleApiErrors, HandleApiResponse } from "../../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import Spinner from "../../components/Spinner";
 
@@ -18,7 +18,7 @@ export default function CurrentUserProfile() {
       setLoading(true);
       getUser(userId!)
         .then((response) => {
-          const result = HandleApiResponse(response);
+          const result = HandleApiSuccess(response);
           setUser(result.data ?? null);
           setLoading(false);
         })

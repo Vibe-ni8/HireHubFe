@@ -3,7 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import type { BaseResponse, Candidate } from "../../../dto/Response";
 import Spinner from "../../../components/Spinner";
 import { editCandidate, getCandidate } from "../../../services/Auth.service";
-import { HandleApiErrors, HandleApiResponse } from "../../../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import { FaPencilAlt } from "react-icons/fa";
 
@@ -24,7 +24,7 @@ export default function CandidateDetail() {
     setLoading(true);
     getCandidate(candidateId)
       .then((response) => {
-        const result = HandleApiResponse(response);
+        const result = HandleApiSuccess(response);
         setCandidate(result.data ?? null);
         setLoading(false);
       })
@@ -84,7 +84,7 @@ export default function CandidateDetail() {
     setEditLoading(true);
     editCandidate(payload)
       .then((response) => {
-        const result = HandleApiResponse(response);
+        const result = HandleApiSuccess(response);
         setCandidate(result.data ?? null);
         setEditedCandidate(null);
         setPayload({});

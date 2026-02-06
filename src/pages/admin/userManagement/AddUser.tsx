@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Spinner from "../../../components/Spinner";
 import type { AddUserRequest } from "../../../dto/Request";
-import { HandleApiErrors, HandleApiResponse } from "../../../helper/HelperMethods";
+import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import type { BaseResponse } from "../../../dto/Response";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +28,7 @@ export default function AddUser() {
         setLoading(true);
         addUser(user)
           .then((response) => {
-            let result = HandleApiResponse(response);
+            let result = HandleApiSuccess(response);
             setLoading(false);
             navigate(`/admin/user/detail/${result.data?.userId}`);
           })
