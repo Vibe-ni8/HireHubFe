@@ -1,6 +1,6 @@
 import api from './axios'
 import type { AddCandidateRequest, AddUserRequest, LoginRequest } from '../dto/Request'
-import type { LoginResponse, User, Response, AdminDashboardDetails, Candidate, DriveMember } from '../dto/Response'
+import type { LoginResponse, User, Response, AdminDashboardDetails, Candidate, DriveMember, Drive, DriveCandidate, DriveConfig } from '../dto/Response'
 
 /* Auth */
 
@@ -11,7 +11,7 @@ export function getToken(request: LoginRequest) {
 /* User */
 
 export function getUser(userId: number) {
-    return api.get<Response<User>>(`User/fetch/${userId}/test`)
+    return api.get<Response<User>>(`User/fetch/${userId}/test`);
 }
 
 export function getUsers(role: string | null = null, 
@@ -34,7 +34,7 @@ export function addUser(payload: AddUserRequest) {
 /* Candidate */
 
 export function getCandidate(candidateId: number) {
-    return api.get<Response<Candidate>>(`Candidate/fetch/${candidateId}/test`)
+    return api.get<Response<Candidate>>(`Candidate/fetch/${candidateId}/test`);
 }
 
 export function getCandidates(experienceLevel: string | null = null, 
@@ -70,6 +70,21 @@ export async function getCandidateBulkUploadTemplate() {
 
 /* Drive */
 
+export function getDrive(driveId: number) {
+    return api.get<Response<Drive>>(`Drive/fetch/${driveId}/test`);
+}
+
+export function getDrives(driveStatus: string | null = null,
+creatorEmail: string | null = null, technicalRounds: number | null = null,
+isLatestFirst: boolean | null = null, includePastDrives: boolean = false, 
+pageNumber: number | null = null, pageSize: number | null = null, 
+startDate: Date | null = null, endDate: Date | null = null) {
+    return api.get<Response<Array<Drive>>>('Drive/fetch/all/test', { 
+        params: { driveStatus, creatorEmail, technicalRounds, isLatestFirst, 
+        includePastDrives, pageNumber, pageSize, startDate, endDate } 
+    });
+}
+
 export function getDriveMembers(driveId: number | null = null, userId: number | null = null, 
 role: string | null = null, driveStatus: string | null = null,
 isLatestFirst: boolean | null = null, includePastDrives: boolean = false, 
@@ -81,8 +96,23 @@ startDate: Date | null = null, endDate: Date | null = null) {
     });
 }
 
+export function getDriveCandidates(driveId: number | null = null, candidateId: number | null = null, 
+candidateStatus: string | null = null, driveStatus: string | null = null,
+isLatestFirst: boolean | null = null, includePastDrives: boolean = false, 
+pageNumber: number | null = null, pageSize: number | null = null, 
+startDate: Date | null = null, endDate: Date | null = null) {
+    return api.get<Response<Array<DriveCandidate>>>('Drive/candidate/fetch/all/test', { 
+        params: {driveId, candidateId, candidateStatus, driveStatus, isLatestFirst, 
+        includePastDrives, pageNumber, pageSize, startDate, endDate } 
+    });
+}
+
+export function getDriveConfig(driveId: number) {
+    return api.get<Response<DriveConfig>>(`Drive/config/fetch/${driveId}/test`);
+}
+
 /* Admin */
 
 export function getAdminDashboardDetails() {
-    return api.get<Response<AdminDashboardDetails>>('Admin/dashboard/details/test')
+    return api.get<Response<AdminDashboardDetails>>('Admin/dashboard/details/test');
 }

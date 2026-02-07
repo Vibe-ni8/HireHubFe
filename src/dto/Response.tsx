@@ -49,6 +49,17 @@ export interface Candidate {
     createdDate: Date;
 }
 
+export interface Drive {
+    driveId: number;
+    driveName: string;
+    driveDate: Date;
+    technicalRounds: number;
+    driveStatus: string;
+    createdBy: number;
+    creatorName: string;
+    createdDate: Date;
+}
+
 export interface DriveMember {
     driverMemberId: number;
     driveId: number;
@@ -60,6 +71,78 @@ export interface DriveMember {
     userEmail: string;
     roleId: number;
     roleName: string;
+}
+
+export interface DriveCandidate {
+    driverCandidateId: number;
+    candidateId: number;
+    candidateName: string;
+    candidateEmail: string;
+    driveId: number;
+    driveName: string;
+    driveDate: Date;
+    driveStatus: string;
+    candidateStatus: string;
+    statusSetBy: number | null;
+}
+
+export interface DriveConfig {
+  driveId: number;
+  hrConfiguration: HrConfiguration;
+  panelConfiguration: PanelConfiguration;
+  mentorConfiguration: MentorConfiguration;
+  panelVisibilitySettings: PanelVisibilitySettings;
+  notificationSettings: NotificationSettings;
+  feedbackConfiguration: FeedbackConfiguration;
+}
+export interface HrConfiguration {
+  configId: number;
+  driveId: number;
+  allowBulkUpload: boolean;
+  canEditSubmittedFeedback: boolean;
+  allowPanelReassign: boolean;
+  requireApprovalForReassignment: boolean;
+}
+export interface PanelConfiguration {
+  configId: number;
+  driveId: number;
+  canEditSubmittedFeedback: boolean;
+  allowPanelReassign: boolean;
+  requireApprovalForReassignment: boolean;
+}
+export interface MentorConfiguration {
+  configId: number;
+  driveId: number;
+  canViewFeedback: boolean;
+  allowPanelReassign: boolean;
+  requireApprovalForReassignment: boolean;
+}
+export interface PanelVisibilitySettings {
+  visibilityId: number;
+  driveId: number;
+  showPhone: boolean;
+  showEmail: boolean;
+  showPreviousCompany: boolean;
+  showResume: boolean;
+  showCollege: boolean;
+  showAddress: boolean;
+  showLinkedIn: boolean;
+  showGitHub: boolean;
+}
+export interface NotificationSettings {
+  notificationId: number;
+  driveId: number;
+  emailNotificationEnabled: boolean;
+}
+export interface FeedbackConfiguration {
+  feedbackConfigId: number;
+  driveId: number;
+  overallRatingRequired: boolean;
+  technicalSkillRequired: boolean;
+  communicationRequired: boolean;
+  problemSolvingRequired: boolean;
+  recommendationRequired: boolean;
+  overallFeedbackRequired: boolean;
 }
 
 export interface LoginResponse extends Response<string> {
