@@ -23,7 +23,7 @@ export default function AdminNavbar() {
           <NavLink to="/admin/candidate/management">Candidate</NavLink>
         </li>
         <li>
-          <NavLink to="/admin/drive">Drive</NavLink>
+          <NavLink to="/admin/drive/management">Drive</NavLink>
         </li>
       </ul>
       <button onClick={handleLogout}>Logout</button>

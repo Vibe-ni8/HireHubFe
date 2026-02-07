@@ -144,17 +144,17 @@ export default function Candidates() {
           onChange={(e) => setSearch(e.target.value)}
         />
 
-        <select value={isLatestFirstFilter} onChange={(e) => setIsLatestFirstFilter(e.target.value)}>
-          <option value="a to z">A to Z</option>
-          <option value="latest">Latest First </option>
-          <option value="oldest">Oldest First </option>
-        </select>
-
         <select value={experienceLevelFilter} onChange={(e) => setExperienceLevelFilter(e.target.value)}>
           <option value="all">All</option>
           <option value="Fresher">Fresher</option>
           <option value="Intermediate">Intermediate</option>
           <option value="Experienced">Experienced</option>
+        </select>
+
+        <select value={isLatestFirstFilter} onChange={(e) => setIsLatestFirstFilter(e.target.value)}>
+          <option value="a to z">A to Z</option>
+          <option value="latest">Latest First </option>
+          <option value="oldest">Oldest First </option>
         </select>
       </div>
 
