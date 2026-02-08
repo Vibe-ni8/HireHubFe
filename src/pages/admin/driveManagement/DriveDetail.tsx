@@ -13,14 +13,14 @@ export default function DriveDetail() {
   const driveId = Number(id);
 
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const [drive, setDrive] = useState<Drive | null>(null);
+  /* Drive Edit */
+  const [isEditMode, setEditMode] = useState(false);
   const [editedDrive, setEditedDrive] = useState<Drive | null>(null);
   const [driveDate, setDriveDate] = useState('');
   const [payload, setPayload] = useState<any>({});
-  const [loading, setLoading] = useState(false);
   const [editLoading, setEditLoading] = useState(false);
-  const [isEditMode, setEditMode] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -36,6 +36,7 @@ export default function DriveDetail() {
       });
   }, []);
 
+  /* Drive Edit */
   const enterEditMode = () => {
     setEditedDrive(drive); 
     setDriveDate(drive?.driveDate.toISOString().split("T")[0] ?? '')
@@ -91,6 +92,17 @@ export default function DriveDetail() {
     setEditMode(false);
   }
 
+  /* Drive Additional */
+  const tabs = [
+    { key: "config", label: "Configuration" },
+    { key: "hr", label: "HR Members" },
+    { key: "panel", label: "Panel Members" },
+    { key: "mentor", label: "Mentors" },
+    { key: "candidate", label: "Candidates" }
+  ];
+  const [activeTab, setActiveTab] = useState("config");
+
+
   if (loading) return (
     <>
       <Spinner show={loading}/>
@@ -99,89 +111,115 @@ export default function DriveDetail() {
   );
   if (!drive) return <div className="dd-notfound">Drive not found</div>;
   return (
-    <form className="drive-detail" onSubmit={handleSubmit}>
+    <div className="drive-detail-page">
       <Spinner show={editLoading}/>
-      <div className="dd-head">
-        <h2>Drive Detail</h2>
-        {!isEditMode && <button onClick={enterEditMode}>
-          <FaPencilAlt />
-        </button>}
-      </div>
 
-      <div className="dd-detail-row">
-        <label>Name{isEditMode ? '*' : ''}:</label>
-        {isEditMode ? (
-          <input name="driveName" required value={editedDrive?.driveName ?? ''} onChange={handleChange}/>
-        ) : (
-          <span>{drive.driveName}</span>
-        )}
-      </div>
-
-      <div className="dd-detail-row">
-        <label>Date{isEditMode ? '*' : ''}:</label>
-        {isEditMode ? (
-          <input name="driveDate" required type="date"
-          value={driveDate} 
-          onChange={handleChange}/>
-        ) : (
-          <span>{drive.driveDate.toDateString()}</span>
-        )}
-      </div>
-
-      <div className="dd-detail-row">
-        <label>Technical Rounds{isEditMode ? '*' : ''}:</label>
-        {isEditMode ? (
-          <select name="technicalRounds" required 
-          value={editedDrive?.technicalRounds ?? ''} 
-          onChange={handleChange} >
-            <option value={''}>Select</option>
-            <option value={1}>One</option>
-            <option value={2}>Two</option>
-          </select>
-        ) : (
-          <span>{drive.technicalRounds}</span>
-        )}
-      </div>
-
-      <div className="cd-detail-row">
-        <label>Status{isEditMode ? '*' : ''}:</label>
-        {isEditMode ? (
-          <select name="driveStatus" required value={editedDrive?.driveStatus ?? ''} 
-          onChange={handleChange} >
-            <option value='InProposal'>InProposal</option>
-            <option value='Started'>Started</option>
-            <option value='Halted'>Halted</option>
-            <option value='Completed'>Completed</option>
-            <option value='Cancelled'>Cancelled</option>
-          </select>
-        ) : (
-          <span className={`dm-${drive.driveStatus}`}>{drive.driveStatus}</span>
-        )}
-      </div>
-
-      <div className="dd-detail-row">
-        <label>Creator:</label>
-        {isEditMode ? <span>{drive.creatorName}</span> :
-        <span className="dd-cursor-pointer" onClick={() => navigate(`/admin/user/detail/${drive.createdBy}`)}>
-            {drive.creatorName}
-        </span> }
-      </div>
-
-      <div className="dd-detail-row">
-        <label>Created On:</label>
-        <span>{drive.createdDate.toDateString()}</span>
-      </div>
-
-      {isEditMode && (
-        <div className="dd-actions">
-          <button type="submit" className="btn-save">
-            Save
-          </button>
-          <button type="button" className="btn-cancel" onClick={handleCancel}>
-            Cancel
-          </button>
+      {/* Drive */}
+      <form className="drive-detail" onSubmit={handleSubmit}>
+        <div className="dd-head">
+          <h2>Drive Detail</h2>
+          {!isEditMode && <button onClick={enterEditMode}>
+            <FaPencilAlt />
+          </button>}
         </div>
-      )}
-    </form>
+
+        <div className="dd-detail-row">
+          <label>Name{isEditMode ? '*' : ''}:</label>
+          {isEditMode ? (
+            <input name="driveName" required value={editedDrive?.driveName ?? ''} onChange={handleChange}/>
+          ) : (
+            <span>{drive.driveName}</span>
+          )}
+        </div>
+
+        <div className="dd-detail-row">
+          <label>Date{isEditMode ? '*' : ''}:</label>
+          {isEditMode ? (
+            <input name="driveDate" required type="date"
+            value={driveDate} 
+            onChange={handleChange}/>
+          ) : (
+            <span>{drive.driveDate.toDateString()}</span>
+          )}
+        </div>
+
+        <div className="dd-detail-row">
+          <label>Technical Rounds{isEditMode ? '*' : ''}:</label>
+          {isEditMode ? (
+            <select name="technicalRounds" required 
+            value={editedDrive?.technicalRounds ?? ''} 
+            onChange={handleChange} >
+              <option value={''}>Select</option>
+              <option value={1}>One</option>
+              <option value={2}>Two</option>
+            </select>
+          ) : (
+            <span>{drive.technicalRounds}</span>
+          )}
+        </div>
+
+        <div className="cd-detail-row">
+          <label>Status{isEditMode ? '*' : ''}:</label>
+          {isEditMode ? (
+            <select name="driveStatus" required value={editedDrive?.driveStatus ?? ''} 
+            onChange={handleChange} >
+              <option value='InProposal'>InProposal</option>
+              <option value='Started'>Started</option>
+              <option value='Halted'>Halted</option>
+              <option value='Completed'>Completed</option>
+              <option value='Cancelled'>Cancelled</option>
+            </select>
+          ) : (
+            <span className={`dm-${drive.driveStatus}`}>{drive.driveStatus}</span>
+          )}
+        </div>
+
+        <div className="dd-detail-row">
+          <label>Creator:</label>
+          {isEditMode ? <span>{drive.creatorName}</span> :
+          <span className="dd-cursor-pointer" onClick={() => navigate(`/admin/user/detail/${drive.createdBy}`)}>
+              {drive.creatorName}
+          </span> }
+        </div>
+
+        <div className="dd-detail-row">
+          <label>Created On:</label>
+          <span>{drive.createdDate.toDateString()}</span>
+        </div>
+
+        {isEditMode && (
+          <div className="dd-actions">
+            <button type="submit" className="btn-save">
+              Save
+            </button>
+            <button type="button" className="btn-cancel" onClick={handleCancel}>
+              Cancel
+            </button>
+          </div>
+        )}
+      </form>
+
+      {/* Drive Additional */}
+      <div className="drive-detail-extra">
+        <div className="dde-header">
+          {tabs.map(tab => (
+            <button
+              key={tab.key}
+              className={`dde-tab ${activeTab === tab.key ? "active" : ""}`}
+              onClick={() => setActiveTab(tab.key)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+        <div className="dde-content">
+          {activeTab === "config" && <div>Configuration content</div>}
+          {activeTab === "hr" && <div>HR Members Detail</div>}
+          {activeTab === "panel" && <div>Panel Members Detail</div>}
+          {activeTab === "mentor" && <div>Mentors Detail</div>}
+          {activeTab === "candidate" && <div>Candidates Detail</div>}
+        </div>
+      </div>
+    </div>
   );
 }
