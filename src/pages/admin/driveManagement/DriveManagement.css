@@ -192,3 +192,149 @@
   font-size: 14px;
   color: #0b0d10;
 }
+
+.drive-detail {
+  max-width: 600px;
+  margin: 0 auto;
+  color: #0b0d10;
+}
+
+.dd-loading, .dd-notfound {
+  height: 80vh;
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #64748b;
+}
+
+.dd-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dd-head button {
+  padding: 5px 10px;
+  border: none;
+  background-color: white;
+}
+
+.dd-head button:hover {
+  background-color: #000;
+  color: white;
+}
+
+.dd-detail-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.dd-detail-row input, .dd-detail-row select {
+  padding: 6px 8px;
+  width: 250px;
+  border-radius: 8px;
+  border-width: 1px;
+  border-left: 0px;
+  border-right: 0px;
+  border-top: 0px;
+}
+.dd-detail-row input {
+  height: 20px;
+}
+.dd-detail-row select {
+  height: 30px;
+}
+
+.dd-detail-row span {
+  display: flex;
+  flex-wrap: wrap;
+  width: 250px;
+}
+
+input.dd-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 5px;      /* set your width */
+  height: 5px;
+  border: 2px solid #555;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  margin-top: 5px;
+}
+
+.dd-checkbox:checked {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.dd-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 0px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.dd-detail-row label {
+  width: 120px;
+  font-weight: 600;
+}
+
+.dd-InProposal {
+  color: #a38e16;
+  font-weight: 500;
+}
+.dd-Started {
+  color: #16a34a;
+  font-weight: 500;
+}
+.dd-Halted {
+  color: #a36416;
+  font-weight: 500;
+}
+.dd-Completed {
+  color: gray;
+  font-weight: 500;
+}
+.dd-Cancelled {
+  color: #dc2626;
+  font-weight: 500;
+}
+
+.dd-cursor-pointer {
+  cursor: pointer;
+}
+.dd-cursor-pointer:hover {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.dd-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.dd-actions .btn-save {
+  background: #198754;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+.dd-actions .btn-cancel {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+}

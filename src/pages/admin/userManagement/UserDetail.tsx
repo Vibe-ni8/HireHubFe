@@ -73,12 +73,11 @@ export default function UserDetail() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setEditLoading(true);
-    let haveUpcomingDrive: boolean = false;
     if (payload.isActive === false)
     {
       getDriveMembers(null, userId, null, null, null, false, 1, 1)
         .then((response) => {
-          haveUpcomingDrive = response.data.data!.length > 0;
+          const haveUpcomingDrive = response.data.data!.length > 0;
           const proceed = haveUpcomingDrive ? window.confirm(confirmMessage) : true;
           if (proceed)
             postDateToServer();

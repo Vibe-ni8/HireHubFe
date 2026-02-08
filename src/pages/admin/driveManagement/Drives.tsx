@@ -68,7 +68,7 @@ export default function Drives() {
         />
 
         <div>
-          <label>Include Past Drives</label>
+          <label>Include Past Drives:</label>
           <input
             type="checkbox"
             checked={includePastDrivesFilter}

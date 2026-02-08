@@ -111,6 +111,10 @@ export function getDriveConfig(driveId: number) {
     return api.get<Response<DriveConfig>>(`Drive/config/fetch/${driveId}/test`);
 }
 
+export function editDrive(payload: any) {
+    return api.post<Response<Drive>>('Drive/edit/test', payload);
+}
+
 /* Admin */
 
 export function getAdminDashboardDetails() {

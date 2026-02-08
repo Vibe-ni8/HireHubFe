@@ -16,8 +16,9 @@ import Candidates from "./pages/admin/candidateManagement/Candidates"
 import CandidateDetail from "./pages/admin/candidateManagement/CandidateDetail"
 import AddCandidate from "./pages/admin/candidateManagement/AddCandidate"
 import CandidateManagement from "./pages/admin/candidateManagement/CandidateManagement"
-import DriveManagement from "./pages/admin/driveManagement/driveManagement"
+import DriveManagement from "./pages/admin/driveManagement/DriveManagement"
 import Drives from "./pages/admin/driveManagement/Drives"
+import DriveDetail from "./pages/admin/driveManagement/DriveDetail"
 
 export default function App() {
   return (
@@ -57,6 +58,7 @@ export default function App() {
               <Route path="drive" element={<DriveManagement />} >
                 <Route path="" element={<Navigate to="management" replace />} />
                 <Route path="management" element={<Drives/>} />
+                <Route path="detail/:id" element={<DriveDetail/>} />
               </Route>
               
             </Route>

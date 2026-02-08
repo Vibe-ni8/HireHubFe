@@ -180,6 +180,7 @@ export default function CandidateDetail() {
         {isEditMode ? (
           <select name="experienceLevel" required value={editedCandidate?.candidateExperienceLevel ?? ''} 
           onChange={handleChange} >
+            <option value=''>Select</option>
             <option value='Fresher'>Fresher</option>
             <option value='Intermediate'>Intermediate</option>
             <option value='Experienced'>Experienced</option>
