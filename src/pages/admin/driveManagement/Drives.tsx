@@ -144,7 +144,7 @@ export default function Drives() {
                     onClick={() => navigate(`/admin/drive/detail/${drive.driveId}`)}
                   >
                     <td>{drive.driveName}</td>
-                    <td>{drive.driveDate.toDateString()}</td>
+                    <td>{new Date(drive.driveDate).toDateString()}</td>
                     <td>
                       <span className={`dm-${drive.driveStatus}`}>
                         {drive.driveStatus}

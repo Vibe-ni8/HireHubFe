@@ -40,7 +40,7 @@ export default function DriveDetail() {
   /* Drive Edit */
   const enterEditMode = () => {
     setEditedDrive(drive); 
-    setDriveDate(drive?.driveDate.toISOString().split("T")[0] ?? '')
+    setDriveDate(drive?.driveDate.split("T")[0] ?? '')
     setPayload({ driveId: drive?.driveId });
     setEditMode(true);
   }
@@ -48,18 +48,18 @@ export default function DriveDetail() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (!editedDrive) return;
     const { name, value, type } = e.target;
-    let date: Date = editedDrive.driveDate;
+    let date: Date = new Date(editedDrive.driveDate);
     if (type === 'date') {
-        setDriveDate(value);
-        try { date = new Date(value); } catch {}
+      setDriveDate(value);
+      try { date = new Date(value); } catch {}
     }
     setEditedDrive({
       ...editedDrive,
-      [name]: type === 'date' ? date : name === 'technicalRounds' ? Number(value) : value
+      [name]: type === 'date' ? date.toISOString() : name === 'technicalRounds' ? Number(value) : value
     });
     setPayload({
       ...payload,
-      [name]: type === 'date' ? date : name === 'technicalRounds' ? Number(value) : value
+      [name]: type === 'date' ? date.toISOString() : name === 'technicalRounds' ? Number(value) : value
     });
   };
 
@@ -140,7 +140,7 @@ export default function DriveDetail() {
             value={driveDate} 
             onChange={handleChange}/>
           ) : (
-            <span>{drive.driveDate.toDateString()}</span>
+            <span>{new Date(drive.driveDate).toDateString()}</span>
           )}
         </div>
 
@@ -185,7 +185,7 @@ export default function DriveDetail() {
 
         <div className="dd-detail-row">
           <label>Created On:</label>
-          <span>{drive.createdDate.toDateString()}</span>
+          <span>{new Date(drive.createdDate).toDateString()}</span>
         </div>
 
         {isEditMode && (

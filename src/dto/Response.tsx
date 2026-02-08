@@ -29,8 +29,8 @@ export interface User {
     isActive: boolean;
     roleId: number;
     roleName: string;
-    createdDate: Date;
-    updatedDate?: Date | null;
+    createdDate: string;
+    updatedDate?: string | null;
 }
 
 export interface Candidate {
@@ -46,25 +46,25 @@ export interface Candidate {
     resumeUrl: string | null;
     linkedInUrl: string | null;
     gitHubUrl: string | null;
-    createdDate: Date;
+    createdDate: string;
 }
 
 export interface Drive {
     driveId: number;
     driveName: string;
-    driveDate: Date;
+    driveDate: string;
     technicalRounds: number;
     driveStatus: string;
     createdBy: number;
     creatorName: string;
-    createdDate: Date;
+    createdDate: string;
 }
 
 export interface DriveMember {
     driverMemberId: number;
     driveId: number;
     driveName: string;
-    driveDate: Date;
+    driveDate: string;
     driveStatus: string;
     userId: number;
     userName: string;
@@ -80,7 +80,7 @@ export interface DriveCandidate {
     candidateEmail: string;
     driveId: number;
     driveName: string;
-    driveDate: Date;
+    driveDate: string;
     driveStatus: string;
     candidateStatus: string;
     statusSetBy: number | null;

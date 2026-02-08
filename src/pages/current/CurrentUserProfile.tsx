@@ -74,7 +74,7 @@ export default function CurrentUserProfile() {
 
           <div className="cu-detail">
             <span>Joined On</span>
-            <p>{user.createdDate.toLocaleDateString()}</p>
+            <p>{new Date(user.createdDate).toLocaleDateString()}</p>
           </div>
         </div>
         

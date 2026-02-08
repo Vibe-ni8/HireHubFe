@@ -163,7 +163,7 @@ export default function UserDetail() {
 
       <div className="ud-detail-row">
         <label>Joined From:</label>
-        <span>{user.createdDate.toDateString()}</span>
+        <span>{new Date(user.createdDate).toDateString()}</span>
       </div>
 
       {isEditMode && (

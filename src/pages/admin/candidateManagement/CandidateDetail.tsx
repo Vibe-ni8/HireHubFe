@@ -261,7 +261,7 @@ export default function CandidateDetail() {
 
       <div className="cd-detail-row">
         <label>Joined From:</label>
-        <span>{candidate.createdDate.toDateString()}</span>
+        <span>{new Date(candidate.createdDate).toDateString()}</span>
       </div>
 
       {isEditMode && (
