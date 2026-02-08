@@ -37,7 +37,7 @@ export default function Drives() {
         });
     }, [statusFilter, includePastDrivesFilter, isLatestFirstFilter, page, startDate, endDate]);
 
-  const filteredUsers = useMemo(() => {
+  const filteredDrives = useMemo(() => {
     return drives === null ? [] : drives.filter((d) => {
       const matchSearch =
         d.driveName.toLowerCase().includes(search.toLowerCase())
@@ -130,7 +130,7 @@ export default function Drives() {
                   No drive record found
                 </td>
               </tr>
-            ) : filteredUsers.length === 0 ? (
+            ) : filteredDrives.length === 0 ? (
               <tr>
                 <td colSpan={4} className="dm-empty">
                   No drives found on current batch
@@ -138,7 +138,7 @@ export default function Drives() {
               </tr>
             ) : 
               <>
-                {filteredUsers.map((drive) => (
+                {filteredDrives.map((drive) => (
                   <tr
                     key={drive.driveId}
                     onClick={() => navigate(`/admin/drive/detail/${drive.driveId}`)}

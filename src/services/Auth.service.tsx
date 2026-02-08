@@ -1,5 +1,5 @@
 import api from './axios'
-import type { AddCandidateRequest, AddUserRequest, LoginRequest } from '../dto/Request'
+import type { AddCandidateRequest, AddMemberToDriveRequest, AddUserRequest, LoginRequest, RemoveDriveMemberRequest } from '../dto/Request'
 import type { LoginResponse, User, Response, AdminDashboardDetails, Candidate, DriveMember, Drive, DriveCandidate, DriveConfig } from '../dto/Response'
 
 /* Auth */
@@ -111,12 +111,20 @@ export function getDriveConfig(driveId: number) {
     return api.get<Response<DriveConfig>>(`Drive/config/fetch/${driveId}/test`);
 }
 
+export function addMemberToDrive(payload: AddMemberToDriveRequest) {
+    return api.post<Response<DriveMember>>('Drive/member/add/test', payload);
+}
+
 export function editDrive(payload: any) {
     return api.post<Response<Drive>>('Drive/edit/test', payload);
 }
 
 export function editDriveConfig(payload: any) {
     return api.post<Response<DriveConfig>>('Drive/config/edit/test', payload);
+}
+
+export function removeDriveMember(payload: RemoveDriveMemberRequest) {
+    return api.post<Response<DriveMember>>('Drive/member/remove/test', payload);
 }
 
 /* Admin */

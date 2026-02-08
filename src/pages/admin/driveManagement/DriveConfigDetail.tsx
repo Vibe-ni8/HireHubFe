@@ -8,17 +8,21 @@ import ToggleRow from "../../../components/ToggleRow";
 
 export default function DriveConfigDetail({driveId}:{driveId: number}) {
 
+  const [loading, setLoading] = useState(false);
   const [driveConfig, setDriveConfig] = useState<DriveConfig | null>(null);
   const [editLoading, setEditLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     getDriveConfig(driveId)
       .then((response) => {
         const result = HandleApiSuccess(response);
         setDriveConfig(result.data ?? null);
+        setLoading(false);
       })
       .catch((err: AxiosError<BaseResponse>) => {
         HandleApiErrors(err);
+        setLoading(false);
       });
   }, []);
 
@@ -37,6 +41,7 @@ export default function DriveConfigDetail({driveId}:{driveId: number}) {
   }
 
 
+  if (loading) return <div><Spinner show={loading} /> Fetching... </div>
   if (!driveConfig) return <div>Not found</div>;
   return (
     <div className="drive-config-detail">

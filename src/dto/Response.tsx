@@ -61,7 +61,7 @@ export interface Drive {
 }
 
 export interface DriveMember {
-    driverMemberId: number;
+    driveMemberId: number;
     driveId: number;
     driveName: string;
     driveDate: string;

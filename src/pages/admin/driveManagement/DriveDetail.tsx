@@ -7,6 +7,7 @@ import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods
 import type { AxiosError } from "axios";
 import { FaPencilAlt } from "react-icons/fa";
 import DriveConfigDetail from "./DriveConfigDetail";
+import DriveMembers from "./DriveMembers";
 
 export default function DriveDetail() {
 
@@ -215,9 +216,9 @@ export default function DriveDetail() {
         </div>
         <div className="dde-content">
           {activeTab === "config" && <DriveConfigDetail driveId={driveId}/>}
-          {activeTab === "hr" && <div>HR Members Detail</div>}
-          {activeTab === "panel" && <div>Panel Members Detail</div>}
-          {activeTab === "mentor" && <div>Mentors Detail</div>}
+          {activeTab === "hr" && <DriveMembers driveId={driveId} role="HR"/>}
+          {activeTab === "panel" && <DriveMembers driveId={driveId} role="Panel"/>}
+          {activeTab === "mentor" && <DriveMembers driveId={driveId} role="Mentor"/>}
           {activeTab === "candidate" && <div>Candidates Detail</div>}
         </div>
       </div>

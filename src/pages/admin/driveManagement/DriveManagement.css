@@ -200,8 +200,8 @@
 }
 
 .drive-detail {
+  justify-self: start;
   max-width: 500px;
-  margin: 0 200px 0 0;
   color: #0b0d10;
   padding: 2px;
   padding-left: 25px;
@@ -431,6 +431,101 @@ input.dd-checkbox {
   font-weight: 600;
   border-bottom: 1px solid #eee;
   padding-bottom: 6px;
+}
+
+.dmem-container {
+  padding: 0 10px;
+}
+
+.dmem-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dmem-add-btn {
+  display: flex;
+  gap: 5px;
+  width: auto;
+  height: fit-content;
+  padding: 6px 6px;
+  border-radius: 6px;
+  border: solid;
+  border-width: 1px;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  background: transparent;
+  color: #000;
+  cursor: pointer;
+}
+.dmem-add-btn:hover {
+  border: solid;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+.dmem-add-panel {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  background: white;
+  width: 50%;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.dmem-add-panel::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.dmem-user-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.dmem-user-row button {
+  width: auto;
+  height: fit-content;
+  border: none;
+  background-color: transparent;
+  padding: 1px 1px;
+  color: #828283;
+}
+.dmem-user-row button:hover {
+  color: #3d3d3d;
+}
+
+.dmem-list {
+  margin-top: 0;
+  padding: 0;
+}
+
+.dmem-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.dmem-email {
+  font-size: 13px;
+  color: #666;
+}
+
+.dmem-delete {
+  cursor: pointer;
+  color: #d11a2a;
+}
+
+.dmem-empty {
+  color: #888;
+  font-style: italic;
 }
 
 

@@ -20,6 +20,17 @@ export interface AddCandidateRequest {
     gitHubUrl: string | null;
 }
 
+export interface AddMemberToDriveRequest {
+    driveId: number;
+    memberId: number;
+    memberRole: string;
+}
+
+export interface RemoveDriveMemberRequest {
+    driveId: number;
+    memberId: number;
+}
+
 export interface LoginRequest {
     username: string,
     password: string

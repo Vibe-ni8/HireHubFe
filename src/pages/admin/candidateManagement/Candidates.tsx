@@ -49,7 +49,7 @@ export default function Candidates() {
         });
     }, [isLatestFirstFilter, experienceLevelFilter, page, bulkUploadResult]);
 
-  const filteredUsers = useMemo(() => {
+  const filteredCandidates = useMemo(() => {
     return candidates === null ? [] : candidates.filter((u) => {
       const matchSearch =
         u.fullName.toLowerCase().includes(search.toLowerCase()) ||
@@ -182,7 +182,7 @@ export default function Candidates() {
                   No candidate record found
                 </td>
               </tr>
-            ) : filteredUsers.length === 0 ? (
+            ) : filteredCandidates.length === 0 ? (
               <tr>
                 <td colSpan={4} className="cm-empty">
                   No candidates found on current batch
@@ -190,7 +190,7 @@ export default function Candidates() {
               </tr>
             ) : 
               <>
-                {filteredUsers.map((candidate) => (
+                {filteredCandidates.map((candidate) => (
                   <tr
                     key={candidate.candidateId}
                     onClick={() => navigate(`/admin/candidate/detail/${candidate.candidateId}`)}
