@@ -196,13 +196,15 @@
 .drive-detail-page {
   display: block;
   color: #0b0d10;
+  width: 75vw;
 }
 
 .drive-detail {
   max-width: 500px;
-  margin: 0 auto;
+  margin: 0 200px 0 0;
   color: #0b0d10;
   padding: 2px;
+  padding-left: 25px;
 }
 
 .dd-loading, .dd-notfound {
@@ -404,8 +406,41 @@ input.dd-checkbox {
   }
 }
 
-/* Content */
 .dde-content {
   padding: 16px;
   min-height: 200px;
+}
+
+.drive-config-detail {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 5px;
+}
+
+.dc-segment {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 11px 15px;
+  margin: 5px;
+  border: 1px solid #e5e7eb;
+}
+
+.dc-segment h3 {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+
+@media (max-width: 668px) {
+  .drive-detail-page {
+    width: 100vw;
+  }
+
+  .drive-detail {
+    max-width: 100vw;
+    margin: 0;
+  }
 }

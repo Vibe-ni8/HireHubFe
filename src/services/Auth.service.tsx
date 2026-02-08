@@ -115,6 +115,10 @@ export function editDrive(payload: any) {
     return api.post<Response<Drive>>('Drive/edit/test', payload);
 }
 
+export function editDriveConfig(payload: any) {
+    return api.post<Response<DriveConfig>>('Drive/config/edit/test', payload);
+}
+
 /* Admin */
 
 export function getAdminDashboardDetails() {

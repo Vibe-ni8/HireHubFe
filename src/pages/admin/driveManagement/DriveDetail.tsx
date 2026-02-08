@@ -6,6 +6,7 @@ import { editDrive, getDrive } from "../../../services/Auth.service";
 import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import { FaPencilAlt } from "react-icons/fa";
+import DriveConfigDetail from "./DriveConfigDetail";
 
 export default function DriveDetail() {
 
@@ -213,7 +214,7 @@ export default function DriveDetail() {
           ))}
         </div>
         <div className="dde-content">
-          {activeTab === "config" && <div>Configuration content</div>}
+          {activeTab === "config" && <DriveConfigDetail driveId={driveId}/>}
           {activeTab === "hr" && <div>HR Members Detail</div>}
           {activeTab === "panel" && <div>Panel Members Detail</div>}
           {activeTab === "mentor" && <div>Mentors Detail</div>}

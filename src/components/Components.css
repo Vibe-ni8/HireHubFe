@@ -1,0 +1,35 @@
+.tr-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.tr-row span {
+  font-size: 14px;
+  color: #374151;
+}
+
+.tr-toggle {
+  padding: 6px 10px;
+  width: auto;
+  border-radius: 20px;
+  border: none;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tr-toggle.on {
+  background-color: #16a34a;
+  color: white;
+}
+
+.tr-toggle.off {
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+.tr-toggle:hover {
+  opacity: 0.85;
+}
