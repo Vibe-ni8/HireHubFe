@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { FaTrash, FaPlus, FaEye } from "react-icons/fa";
+import { FaTrash, FaEye } from "react-icons/fa";
 import type { BaseResponse, DriveMember, User } from "../../../dto/Response";
 import { addMemberToDrive, getDriveMembers, getUsers, removeDriveMember } from "../../../services/Auth.service";
 import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import Spinner from "../../../components/Spinner";
 import { useNavigate } from "react-router-dom";
+import UserSearchAdd from "../../../components/UserSearchAdd";
 
 interface DriveMembersProps {
   driveId: number;
@@ -20,7 +21,6 @@ export default function DriveMembers({ driveId, role }: DriveMembersProps) {
   const [members, setMembers] = useState<DriveMember[]>([]);
   const [search, setSearch] = useState("");
   const [users, setUsers] = useState<User[]>([]);
-  const [showList, setShowList] = useState(false);
   
 
   useEffect(() => {
@@ -82,12 +82,10 @@ export default function DriveMembers({ driveId, role }: DriveMembersProps) {
         const result = HandleApiSuccess(response);
         setMembers(prev => [...prev, result.data!]);
         setLoading(false);
-        setShowList(false);
       })
       .catch((err: AxiosError<BaseResponse>) => {
         HandleApiErrors(err);
         setLoading(false);
-        setShowList(false);
       });
   };
 
@@ -99,22 +97,15 @@ export default function DriveMembers({ driveId, role }: DriveMembersProps) {
         <input type="text" placeholder="Search by name or email" 
           value={search} onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="dmem-add-btn" onClick={() => setShowList(p => !p)}>
-          <FaPlus /> Add {role}
-        </button>
+        <UserSearchAdd
+          users={users}
+          onAdd={(user) => {
+            if (window.confirm(`Add ${user.fullName} to this drive?`)) {
+              addMember(user.userId);
+            }
+          }}
+        />
       </div>
-
-      {/* Add panel */}
-      {showList && (
-        <div className="dmem-add-panel">
-          {users.map(u => (
-            <div key={u.userId} className="dmem-user-row">
-              <span>{u.fullName} ({u.email})</span>
-              <button onClick={() => addMember(u.userId)}><FaPlus /></button>
-            </div>
-          ))}
-        </div>
-      )}
 
       {/* Members list */}
       <div className="dmem-list">

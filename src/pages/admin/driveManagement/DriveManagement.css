@@ -445,8 +445,9 @@ input.dd-checkbox {
 
 .dmem-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
+  gap: 30px;
 }
 
 .dmem-header input {
@@ -454,69 +455,20 @@ input.dd-checkbox {
   border-radius: 10px;
   border: 1px solid #e2e8f0;
   font-size: 14px;
-  width: 25vw;
-}
-
-.dmem-add-btn {
-  display: flex;
-  gap: 5px;
-  width: auto;
-  height: fit-content;
-  padding: 6px 6px;
-  border-radius: 6px;
-  border: solid;
-  border-width: 1px;
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  background: transparent;
-  color: #000;
-  cursor: pointer;
-}
-.dmem-add-btn:hover {
-  border: solid;
-  border-top: 0px;
-  border-bottom: 0px;
-}
-
-.dmem-add-panel {
-  position: absolute;
-  top: 40%;
-  left: 30%;
-  background: white;
-  width: 50%;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  padding: 8px;
-  overflow-y: scroll;
-  scrollbar-width: none;
-}
-.dmem-add-panel::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
-.dmem-user-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 5px 0;
-}
-
-.dmem-user-row button {
-  width: auto;
-  height: fit-content;
-  border: none;
-  background-color: transparent;
-  padding: 1px 1px;
-  color: #828283;
-}
-.dmem-user-row button:hover {
-  color: #3d3d3d;
+  width: 30vw;
 }
 
 .dmem-list {
-  margin-top: 0;
+  margin-top: 10px;
   padding: 0;
+  height: 55vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  border-top: 1px solid #dad9d9;
+}
+.dmem-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .dmem-row {
