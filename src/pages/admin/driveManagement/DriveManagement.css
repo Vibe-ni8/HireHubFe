@@ -205,6 +205,10 @@
   color: #0b0d10;
   padding: 2px;
   padding-left: 25px;
+  border-radius: 10px;
+  border-left: 1px solid #000;
+  padding-bottom: 15px;
+  margin-bottom: 5px;
 }
 
 .dd-loading, .dd-notfound {
@@ -351,6 +355,8 @@ input.dd-checkbox {
   padding: 5px;
   color: #000;
   display: block;
+  border-radius: 10px;
+  border-left: 1px solid #000;
 }
 
 .dde-header {
@@ -443,6 +449,14 @@ input.dd-checkbox {
   align-items: center;
 }
 
+.dmem-header input {
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  width: 25vw;
+}
+
 .dmem-add-btn {
   display: flex;
   gap: 5px;
@@ -518,9 +532,22 @@ input.dd-checkbox {
   color: #666;
 }
 
+.dmem-view {
+  cursor: pointer;
+  color: rgb(188, 168, 142);
+  margin-right: 25px;
+}
+.dmem-view:hover {
+  color: rgb(77, 80, 248);
+}
+
 .dmem-delete {
   cursor: pointer;
-  color: #d11a2a;
+  color: gray;
+  margin-right: 10px
+}
+.dmem-delete:hover {
+  color: rgb(248, 77, 77);
 }
 
 .dmem-empty {

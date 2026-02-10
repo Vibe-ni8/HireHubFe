@@ -1,4 +1,4 @@
-import './Components.css'
+import './ToggleRow.css'
 
 export default function ToggleRow({label, value, onToggle}: ToggleRowProps) {
   return (

@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { FaTrash, FaPlus } from "react-icons/fa";
+import { useEffect, useMemo, useState } from "react";
+import { FaTrash, FaPlus, FaEye } from "react-icons/fa";
 import type { BaseResponse, DriveMember, User } from "../../../dto/Response";
 import { addMemberToDrive, getDriveMembers, getUsers, removeDriveMember } from "../../../services/Auth.service";
 import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import Spinner from "../../../components/Spinner";
+import { useNavigate } from "react-router-dom";
 
 interface DriveMembersProps {
   driveId: number;
@@ -13,10 +14,14 @@ interface DriveMembersProps {
 
 export default function DriveMembers({ driveId, role }: DriveMembersProps) {
 
+  const navigate = useNavigate();
+
   const [loading, setLoading] = useState(false);
   const [members, setMembers] = useState<DriveMember[]>([]);
+  const [search, setSearch] = useState("");
   const [users, setUsers] = useState<User[]>([]);
   const [showList, setShowList] = useState(false);
+  
 
   useEffect(() => {
     setLoading(true);
@@ -32,6 +37,15 @@ export default function DriveMembers({ driveId, role }: DriveMembersProps) {
         setLoading(false);
       });
   }, [driveId, role]);
+
+  const filteredMembers = useMemo(() => {
+      return members.filter((m) => {
+        const matchSearch =
+          m.userName.toLowerCase().includes(search.toLowerCase()) ||
+          m.userEmail.toLowerCase().includes(search.toLowerCase());
+        return matchSearch;
+      });
+    }, [search, members]);
 
   useEffect(() => {
     getUsers(role, true)
@@ -82,7 +96,9 @@ export default function DriveMembers({ driveId, role }: DriveMembersProps) {
       <Spinner show={loading} />
       {/* Header */}
       <div className="dmem-header">
-        <input placeholder="Search by name"/>
+        <input type="text" placeholder="Search by name or email" 
+          value={search} onChange={(e) => setSearch(e.target.value)}
+        />
         <button className="dmem-add-btn" onClick={() => setShowList(p => !p)}>
           <FaPlus /> Add {role}
         </button>
@@ -102,19 +118,25 @@ export default function DriveMembers({ driveId, role }: DriveMembersProps) {
 
       {/* Members list */}
       <div className="dmem-list">
-        {members.length === 0 && <div className="dmem-empty">No members added</div>}
+        {filteredMembers.length === 0 && <div className="dmem-empty">No members added</div>}
 
-        {members.map(m => (
+        {filteredMembers.map(m => (
           <div key={m.driveMemberId} className="dmem-row">
             <div>
               <strong>{m.userName}</strong>
               <div className="dmem-email">{m.userEmail}</div>
             </div>
 
-            <FaTrash
-              className="dmem-delete"
-              onClick={() => removeMember(m.userId)}
-            />
+            <div>
+              <FaEye
+                className="dmem-view"
+                onClick={() => navigate(`/admin/user/detail/${m.userId}`)}
+              />
+              <FaTrash
+                className="dmem-delete"
+                onClick={() => removeMember(m.userId)}
+              />
+            </div>
           </div>
         ))}
       </div>
