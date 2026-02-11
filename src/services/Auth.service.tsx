@@ -1,6 +1,6 @@
 import api from './axios'
 import type { AddCandidateRequest, AddCandidatesToDriveRequest, AddMemberToDriveRequest, AddUserRequest, LoginRequest, RemoveDriveCandidatesRequest, RemoveDriveMemberRequest } from '../dto/Request'
-import type { LoginResponse, User, Response, AdminDashboardDetails, Candidate, DriveMember, Drive, DriveCandidate, DriveConfig } from '../dto/Response'
+import type { LoginResponse, User, Response, AdminDashboardDetails, Candidate, DriveMember, Drive, DriveCandidate, DriveConfig, Round } from '../dto/Response'
 
 /* Auth */
 
@@ -116,6 +116,14 @@ export async function getDriveCandidateBulkUploadTemplate() {
 
 export function getDriveConfig(driveId: number) {
     return api.get<Response<DriveConfig>>(`Drive/config/fetch/${driveId}/test`);
+}
+
+export function getInterviewRounds(driveId: number | null = null, userId: number | null = null, 
+roundType: string | null = null, roundStatus: string | null = null, roundResult: string | null = null,
+pageNumber: number | null = null, pageSize: number | null = null) {
+    return api.get<Response<Array<Round>>>('Drive/round/fetch/all/test', { 
+        params: { driveId, userId, roundType, roundStatus, roundResult, pageNumber, pageSize } 
+    });
 }
 
 export function addMemberToDrive(payload: AddMemberToDriveRequest) {

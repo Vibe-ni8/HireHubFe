@@ -145,6 +145,24 @@ export interface FeedbackConfiguration {
   overallFeedbackRequired: boolean;
 }
 
+export interface Round {
+  roundId: number;
+  driveId: number;
+  driveName: string;
+  driveDate: string; // ISO string from backend
+  driveStatus: string;
+  candidateId: number;
+  candidateName: string;
+  candidateEmail: string;
+  userId: number;
+  userName: string;
+  userEmail: string;
+  type: string;          // Tech1 / Tech2 / HR
+  roundStatus: string;   // Skipped / Completed / Scheduled / OnProcess
+  roundResult: string;   // Selected / Rejected / Pending
+  feedbackId: number | null;
+}
+
 export interface LoginResponse extends Response<string> {
 }
 

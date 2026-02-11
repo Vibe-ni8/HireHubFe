@@ -9,6 +9,7 @@ import { FaPencilAlt } from "react-icons/fa";
 import DriveConfigDetail from "./DriveConfigDetail";
 import DriveMembers from "./DriveMembers";
 import DriveCandidates from "./DriveCandidates";
+import Rounds from "./Rounds";
 
 export default function DriveDetail() {
 
@@ -101,7 +102,8 @@ export default function DriveDetail() {
     { key: "hr", label: "HR Members" },
     { key: "panel", label: "Panel Members" },
     { key: "mentor", label: "Mentors" },
-    { key: "candidate", label: "Candidates" }
+    { key: "candidate", label: "Candidates" },
+    { key: "round", label: "Rounds" }
   ];
   const [activeTab, setActiveTab] = useState("config");
 
@@ -221,6 +223,7 @@ export default function DriveDetail() {
           {activeTab === "panel" && <DriveMembers driveId={driveId} role="Panel"/>}
           {activeTab === "mentor" && <DriveMembers driveId={driveId} role="Mentor"/>}
           {activeTab === "candidate" && <DriveCandidates driveId={driveId}/>}
+          {activeTab === "round" && <Rounds driveId={driveId}/>}
         </div>
       </div>
     </div>

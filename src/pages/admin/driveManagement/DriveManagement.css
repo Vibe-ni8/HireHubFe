@@ -658,6 +658,164 @@ input.dd-checkbox {
   text-decoration: underline;
 }
 
+.ir-container {
+  padding: 0 10px;
+}
+
+.ir-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+  overflow-x: scroll;
+  scrollbar-width: none;
+}
+.ir-header::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.ir-header input, .ir-header select {
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  width: 30vw;
+}
+.ir-header select {
+  width: 15vw;
+}
+
+.ir-list {
+  margin-top: 10px;
+  height: 55vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  padding-right: 4px;
+  border-top: 1px solid #e5e5e5;
+}
+.ir-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.ir-card {
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ir-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+.ir-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.ir-person {
+  flex: 1;
+}
+
+.ir-label {
+  font-size: 12px;
+  color: #888;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.ir-sub {
+  font-size: 12px;
+  color: #666;
+}
+
+.ir-link {
+  cursor: pointer;
+  color: #297df3;
+}
+.ir-link:hover {
+  text-decoration: underline;
+}
+
+.ir-middle {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ir-chip {
+  padding: 2px 5px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ir-type {
+  background: #f0f4ff;
+  color: #2f5eff;
+}
+
+.ir-status-scheduled {
+  background: #fff4e5;
+  color: #d48806;
+}
+.ir-status-onprocess {
+  background: #e6f7ff;
+  color: #1890ff;
+}
+.ir-status-completed {
+  background: #f6ffed;
+  color: #389e0d;
+}
+.ir-status-skipped {
+  background: #fff1f0;
+  color: #cf1322;
+}
+
+.ir-result-pending {
+  background: #fff4e5;
+  color: #d48806;
+}
+.ir-result-selected {
+  background: #e6fffb;
+  color: #08979c;
+}
+.ir-result-rejected {
+  background: #fff1f0;
+  color: #cf1322;
+}
+
+.ir-bottom {
+  text-align: right;
+}
+
+.ir-feedback-btn {
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: none;
+  background: linear-gradient(0deg, #297df3, #4e9bff);
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+}
+.ir-feedback-btn:hover {
+  opacity: 0.9;
+}
+
+.ir-empty {
+  color: #888;
+  font-style: italic;
+}
+
 
 @media (max-width: 668px) {
   .drive-detail-page {
