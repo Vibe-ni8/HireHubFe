@@ -516,7 +516,6 @@ input.dd-checkbox {
   justify-content: start;
   align-items: center;
   gap: 35px;
-  margin-left: 20px;
 }
 
 .dcan-header input {
@@ -536,6 +535,7 @@ input.dd-checkbox {
   height: fit-content;
   background: #f4a953;
   color: #000;
+  margin-left: 5px;
 }
 .dcan-btn-bulk-upload:hover {
   background: linear-gradient(135deg, #a9b5cd, #f4a953);
@@ -547,7 +547,6 @@ input.dd-checkbox {
   height: 55vh;
   overflow-y: scroll;
   scrollbar-width: none;
-  border-top: 1px solid #dad9d9;
 }
 .dcan-list::-webkit-scrollbar {
   width: 0;
@@ -675,6 +674,6 @@ input.dd-checkbox {
   }
 
   .dcan-btn-bulk-upload {
-    margin-left: 45px;
+    margin-left: 50px;
   }
 }
