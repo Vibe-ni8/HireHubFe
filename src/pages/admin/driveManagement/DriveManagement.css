@@ -507,6 +507,74 @@ input.dd-checkbox {
   font-style: italic;
 }
 
+.dcan-container {
+  padding: 0 10px;
+}
+
+.dcan-header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 30px;
+}
+
+.dcan-header input {
+  padding: 6px 8px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  font-size: 14px;
+  width: 30vw;
+}
+
+.dcan-list {
+  margin-top: 10px;
+  padding: 0;
+  height: 55vh;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  border-top: 1px solid #dad9d9;
+}
+.dcan-list::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.dcan-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  border-bottom: 1px solid #eee;
+}
+
+.dcan-email {
+  font-size: 13px;
+  color: #666;
+}
+
+.dcan-view {
+  cursor: pointer;
+  color: rgb(188, 168, 142);
+  margin-right: 25px;
+}
+.dcan-view:hover {
+  color: rgb(77, 80, 248);
+}
+
+.dcan-delete {
+  cursor: pointer;
+  color: gray;
+  margin-right: 10px
+}
+.dcan-delete:hover {
+  color: rgb(248, 77, 77);
+}
+
+.dcan-empty {
+  color: #888;
+  font-style: italic;
+}
+
 
 @media (max-width: 668px) {
   .drive-detail-page {

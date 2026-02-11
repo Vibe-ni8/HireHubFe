@@ -26,9 +26,19 @@ export interface AddMemberToDriveRequest {
     memberRole: string;
 }
 
+export interface AddCandidatesToDriveRequest {
+    driveId: number;
+    candidateIds: number[];
+}
+
 export interface RemoveDriveMemberRequest {
     driveId: number;
     memberId: number;
+}
+
+export interface RemoveDriveCandidatesRequest {
+    driveId: number;
+    candidateIds: number[];
 }
 
 export interface LoginRequest {

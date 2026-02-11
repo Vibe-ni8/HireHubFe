@@ -8,6 +8,7 @@ import type { AxiosError } from "axios";
 import { FaPencilAlt } from "react-icons/fa";
 import DriveConfigDetail from "./DriveConfigDetail";
 import DriveMembers from "./DriveMembers";
+import DriveCandidates from "./DriveCandidates";
 
 export default function DriveDetail() {
 
@@ -219,7 +220,7 @@ export default function DriveDetail() {
           {activeTab === "hr" && <DriveMembers driveId={driveId} role="HR"/>}
           {activeTab === "panel" && <DriveMembers driveId={driveId} role="Panel"/>}
           {activeTab === "mentor" && <DriveMembers driveId={driveId} role="Mentor"/>}
-          {activeTab === "candidate" && <div>Candidates Detail</div>}
+          {activeTab === "candidate" && <DriveCandidates driveId={driveId}/>}
         </div>
       </div>
     </div>

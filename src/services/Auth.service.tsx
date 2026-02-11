@@ -1,5 +1,5 @@
 import api from './axios'
-import type { AddCandidateRequest, AddMemberToDriveRequest, AddUserRequest, LoginRequest, RemoveDriveMemberRequest } from '../dto/Request'
+import type { AddCandidateRequest, AddCandidatesToDriveRequest, AddMemberToDriveRequest, AddUserRequest, LoginRequest, RemoveDriveCandidatesRequest, RemoveDriveMemberRequest } from '../dto/Request'
 import type { LoginResponse, User, Response, AdminDashboardDetails, Candidate, DriveMember, Drive, DriveCandidate, DriveConfig } from '../dto/Response'
 
 /* Auth */
@@ -115,6 +115,17 @@ export function addMemberToDrive(payload: AddMemberToDriveRequest) {
     return api.post<Response<DriveMember>>('Drive/member/add/test', payload);
 }
 
+export function addCandidatesToDrive(payload: AddCandidatesToDriveRequest) {
+    return api.post<Response<Array<number>>>('Drive/candidates/add/test', payload);
+}
+
+export function driveCandidateBulkUpload(driveId: number, file: File) {
+    const formData = new FormData().append("file", file);
+    return api.post<Response<Array<number>>>('Drive/candidate/upload/bulk/test', formData, {
+        headers: { "Content-Type": "multipart/form-data" }, params: { driveId }
+    });
+}
+
 export function editDrive(payload: any) {
     return api.post<Response<Drive>>('Drive/edit/test', payload);
 }
@@ -125,6 +136,10 @@ export function editDriveConfig(payload: any) {
 
 export function removeDriveMember(payload: RemoveDriveMemberRequest) {
     return api.post<Response<DriveMember>>('Drive/member/remove/test', payload);
+}
+
+export function removeDriveCandidates(payload: RemoveDriveCandidatesRequest) {
+    return api.post<Response<Array<number>>>('Drive/candidates/remove/test', payload);
 }
 
 /* Admin */
