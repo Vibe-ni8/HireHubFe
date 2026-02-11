@@ -740,10 +740,11 @@ input.dd-checkbox {
 
 .ir-link {
   cursor: pointer;
-  color: #297df3;
+  color: #444444;
 }
 .ir-link:hover {
   text-decoration: underline;
+  font-style: italic;
 }
 
 .ir-middle {
@@ -760,37 +761,37 @@ input.dd-checkbox {
 }
 
 .ir-type {
-  background: #f0f4ff;
+  /* background: #f0f4ff; */
   color: #2f5eff;
 }
 
 .ir-status-scheduled {
-  background: #fff4e5;
+  /* background: #fff4e5; */
   color: #d48806;
 }
 .ir-status-onprocess {
-  background: #e6f7ff;
+  /* background: #e6f7ff; */
   color: #1890ff;
 }
 .ir-status-completed {
-  background: #f6ffed;
+  /* background: #f6ffed; */
   color: #389e0d;
 }
 .ir-status-skipped {
-  background: #fff1f0;
+  /* background: #fff1f0; */
   color: #cf1322;
 }
 
 .ir-result-pending {
-  background: #fff4e5;
+  /* background: #fff4e5; */
   color: #d48806;
 }
 .ir-result-selected {
-  background: #e6fffb;
+  /* background: #e6fffb; */
   color: #08979c;
 }
 .ir-result-rejected {
-  background: #fff1f0;
+  /* background: #fff1f0; */
   color: #cf1322;
 }
 

@@ -69,21 +69,21 @@ export default function Rounds({ driveId }: RoundsProps) {
           value={candidateSearch} onChange={(e) => setCandidateSearch(e.target.value)}
         />
         <select value={roundTypeSearch} onChange={(e) => setRoundTypeSearch(e.target.value)}>
-            <option value=''>Round Type</option>
+            <option value=''>All Round</option>
             <option value={'HR'}>HR</option>
-            <option value={'Tech1'}>Tech 1</option>
-            <option value={'Tech2'}>Tech 2</option>
-            <option value={'Tech'}>Both Tech</option>
+            <option value={'Tech1'}>Technical 1</option>
+            <option value={'Tech2'}>Technical 2</option>
+            <option value={'Tech'}>Both Technical</option>
         </select>
         <select value={roundStatusSearch} onChange={(e) => setRoundStatusSearch(e.target.value)}>
-            <option value=''>Round Status</option>
+            <option value=''>All Status</option>
             <option value={'Scheduled'}>Scheduled</option>
             <option value={'OnProcess'}>OnProcess</option>
             <option value={'Completed'}>Completed</option>
             <option value={'Skipped'}>Skipped</option>
         </select>
         <select value={roundResultSearch} onChange={(e) => setRoundResultSearch(e.target.value)}>
-            <option value=''>Round Result</option>
+            <option value=''>All Result</option>
             <option value={'Pending'}>Pending</option>
             <option value={'Selected'}>Selected</option>
             <option value={'Rejected'}>Rejected</option>
@@ -123,12 +123,12 @@ export default function Rounds({ driveId }: RoundsProps) {
 
             {/* Middle Section */}
             <div className="ir-middle">
-              <div className="ir-chip ir-type">{r.type}</div>
-
+              <div className="ir-chip ir-type">{r.type.replace('Tech', 'Technical ')}</div>
+              <div className="ir-chip">{'>'}</div>
               <div className={`ir-chip ir-status-${r.roundStatus.toLowerCase()}`}>
                 {r.roundStatus}
               </div>
-
+              <div className="ir-chip">{'>'}</div>
               <div className={`ir-chip ir-result-${r.roundResult.toLowerCase()}`}>
                 {r.roundResult}
               </div>
