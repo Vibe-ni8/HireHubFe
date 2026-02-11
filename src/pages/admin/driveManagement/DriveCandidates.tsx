@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
-import { FaTrash, FaEye } from "react-icons/fa";
+import { FaTrash, FaEye, FaUpload } from "react-icons/fa";
 import type { BaseResponse, Candidate, DriveCandidate } from "../../../dto/Response";
-import { addCandidatesToDrive, getCandidates, getDriveCandidates, removeDriveCandidates } from "../../../services/Auth.service";
+import { addCandidatesToDrive, driveCandidateBulkUpload, getCandidates, getDriveCandidateBulkUploadTemplate, getDriveCandidates, removeDriveCandidates } from "../../../services/Auth.service";
 import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
 import Spinner from "../../../components/Spinner";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CandidateSearchAdd from "../../../components/CandidateSearchAdd";
 
 interface DriveCandidatesProps {
@@ -18,10 +18,13 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
 
   const [loading, setLoading] = useState(false);
   const [driveCandidates, setDriveCandidates] = useState<DriveCandidate[]>([]);
-  const [candidateIdsAdded, setCandidateIdsAdded] = useState<number[]>([]);
+  const [addedCandidateIds, setAddedCandidateIds] = useState<number[]>([]);
   const [search, setSearch] = useState("");
   const [candidates, setCandidates] = useState<Candidate[]>([]);
   
+  const [showUpload, setShowUpload] = useState(false);
+  const [file, setFile] = useState<File | null>(null);
+  const [fileDownloadLink, setFileDownloadLink] = useState<string | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -36,7 +39,7 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
         setDriveCandidates([]);
         setLoading(false);
       });
-  }, [driveId, candidateIdsAdded]);
+  }, [driveId, addedCandidateIds]);
 
   const filteredCandidates = useMemo(() => {
       return driveCandidates.filter((m) => {
@@ -59,6 +62,16 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
       });
   }, []);
 
+  useEffect(() => {
+    getDriveCandidateBulkUploadTemplate()
+      .then(res => {
+        setFileDownloadLink(window.URL.createObjectURL(res));
+      })
+      .catch(() => {
+        setFileDownloadLink(null);
+      })
+    },[]);
+
   const removeCandidate = (candidateId: number) => {
     if (!window.confirm("Are you sure you want to remove this candidate?")) 
         return;
@@ -80,7 +93,35 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
     addCandidatesToDrive({driveId:driveId, candidateIds:[candidateId]})
       .then((response) => {
         const result = HandleApiSuccess(response);
-        setCandidateIdsAdded(result.data ?? []);
+        setAddedCandidateIds(result.data ?? []);
+        setLoading(false);
+      })
+      .catch((err: AxiosError<BaseResponse>) => {
+        HandleApiErrors(err);
+        setLoading(false);
+      });
+  };
+
+  const handleShowUpload = () => {
+      if (showUpload) {
+        setFile(null);
+      }
+      setShowUpload(prev => !prev);
+    }
+  
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleUpload = () => {
+    if (!file) return;
+    setLoading(true);
+    driveCandidateBulkUpload(driveId, file)
+      .then((response) => {
+        var result = HandleApiSuccess(response);
+        setAddedCandidateIds(result.data!)
         setLoading(false);
       })
       .catch((err: AxiosError<BaseResponse>) => {
@@ -105,6 +146,37 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
             }
           }}
         />
+        <button className="dcan-btn-bulk-upload" onClick={handleShowUpload} >
+          Bulk <FaUpload/>
+        </button>
+      </div>
+
+      {/* Upload Section */}
+      <div className="dcan-bulk-upload-wrapper">
+      {showUpload && (    
+        <div className="dcan-bulk-upload-panel">
+          {/* Download template */}
+          {fileDownloadLink && 
+            <Link to={ fileDownloadLink } download className="dcan-template-link">
+              Download Template
+            </Link>
+          }
+
+          {/* File select */}
+          <label className="dcan-file-btn">
+            Choose File
+            <input type="file" accept=".csv,.xlsx" hidden onChange={handleFileChange}/>
+          </label>
+
+          {/* Show selected file */}
+          {file && (<div className="dcan-file-name">{file.name}</div>)}
+
+          {/* Upload */}
+          <button className="dcan-upload-btn" disabled={!file} onClick={handleUpload}>
+            Upload
+          </button>
+        </div>
+      )}
       </div>
 
       {/* Members list */}

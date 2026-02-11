@@ -107,6 +107,13 @@ startDate: Date | null = null, endDate: Date | null = null) {
     });
 }
 
+export async function getDriveCandidateBulkUploadTemplate() {
+    const response = await api.get('Drive/candidate/template/bulk-upload/test', {
+        responseType: "blob"
+    });
+    return new Blob([response.data], { type: response.headers["content-type"] });
+}
+
 export function getDriveConfig(driveId: number) {
     return api.get<Response<DriveConfig>>(`Drive/config/fetch/${driveId}/test`);
 }
