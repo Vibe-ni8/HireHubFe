@@ -17,7 +17,7 @@ export default function Candidates() {
   const [isLatestFirstFilter, setIsLatestFirstFilter] = useState<string>("a to z");
   const [experienceLevelFilter, setExperienceLevelFilter] = useState<string>("all");
   const [page, setPage] = useState<number>(1);
-  const pageSize = 10;
+  const pageSize = 100;
   const [bulkUploadResult, setBulkUploadResult] = useState<Array<number>>([]);
 
   const [showUpload, setShowUpload] = useState(false);

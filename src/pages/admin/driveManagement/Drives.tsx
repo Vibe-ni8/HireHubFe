@@ -19,7 +19,7 @@ export default function Drives() {
   const [page, setPage] = useState<number>(1);
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
-  const pageSize = 10;
+  const pageSize = 100;
 
   useEffect(() => {
       setLoading(true);

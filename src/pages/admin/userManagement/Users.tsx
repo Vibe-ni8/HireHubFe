@@ -17,7 +17,7 @@ export default function Users() {
   const [roleFilter, setRoleFilter] = useState<string>("all");
   const [isLatestFirstFilter, setIsLatestFirstFilter] = useState<string>("a to z");
   const [page, setPage] = useState<number>(1);
-  const pageSize = 10;
+  const pageSize = 100;
 
   useEffect(() => {
       setLoading(true);

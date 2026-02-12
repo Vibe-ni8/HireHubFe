@@ -51,7 +51,9 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
     }, [search, driveCandidates]);
 
   useEffect(() => {
-    getCandidates(null, true, 1, 100)
+    const today = new Date();
+    const sevenDaysBefore = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+    getCandidates(null, null, null, null, sevenDaysBefore)
       .then((response) => {
         const result = HandleApiSuccess(response);
         setCandidates(result.data ?? []);
