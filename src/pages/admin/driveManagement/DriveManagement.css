@@ -658,6 +658,14 @@ input.dd-checkbox {
   text-decoration: underline;
 }
 
+.dcan-loading,
+.dcan-end {
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  color: #888;
+}
+
 .ir-container {
   padding: 0 10px;
 }

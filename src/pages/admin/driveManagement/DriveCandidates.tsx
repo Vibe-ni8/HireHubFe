@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FaTrash, FaEye, FaUpload } from "react-icons/fa";
 import type { BaseResponse, Candidate, DriveCandidate } from "../../../dto/Response";
 import { addCandidatesToDrive, driveCandidateBulkUpload, getCandidates, getDriveCandidateBulkUploadTemplate, getDriveCandidates, removeDriveCandidates } from "../../../services/Auth.service";
@@ -17,7 +17,13 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
+  const [paginationLoading, setPaginationLoading] = useState(false);
   const [driveCandidates, setDriveCandidates] = useState<DriveCandidate[]>([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const PAGE_SIZE = 100;
+  const listRef = useRef<HTMLDivElement>(null);
+
   const [addedCandidateIds, setAddedCandidateIds] = useState<number[]>([]);
   const [search, setSearch] = useState("");
   const [candidates, setCandidates] = useState<Candidate[]>([]);
@@ -26,19 +32,29 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
   const [file, setFile] = useState<File | null>(null);
   const [fileDownloadLink, setFileDownloadLink] = useState<string | null>(null);
 
-  useEffect(() => {
-    setLoading(true);
-    getDriveCandidates(driveId, null, null, null, null, true)
+  const fetchRounds = async (pageNumber: number) => {
+    if (paginationLoading) return;
+    setPaginationLoading(true);
+    getDriveCandidates(driveId, null, null, null, true, true, pageNumber, PAGE_SIZE)
       .then((response) => {
         const result = HandleApiSuccess(response);
-        setDriveCandidates(result.data ?? []);
-        setLoading(false);
+        if (result.data!.length < PAGE_SIZE) {
+          setHasMore(false);
+        }
+        setDriveCandidates(prev => [...prev, ...result.data!]);
+        setPage(pageNumber);
       })
       .catch((err: AxiosError<BaseResponse>) => {
         HandleApiErrors(err);
-        setDriveCandidates([]);
-        setLoading(false);
+      })
+      .finally(() => {
+        setPaginationLoading(false);
       });
+  }
+
+  useEffect(() => {
+    setDriveCandidates([]);
+    fetchRounds(1);
   }, [driveId, addedCandidateIds]);
 
   const filteredCandidates = useMemo(() => {
@@ -73,6 +89,25 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
         setFileDownloadLink(null);
       })
     },[]);
+
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", handleScroll);
+
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+    };
+  }, [page, paginationLoading, hasMore]);
+
+  const handleScroll = () => {
+    const el = listRef.current;
+    if (!el || paginationLoading || !hasMore) return;
+    if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5) {
+      const nextPage = page + 1;
+      fetchRounds(nextPage);
+    }
+  };
 
   const removeCandidate = (candidateId: number) => {
     if (!window.confirm("Are you sure you want to remove this candidate?")) 
@@ -182,8 +217,10 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
       </div>
 
       {/* Members list */}
-      <div className="dcan-list">
-        {filteredCandidates.length === 0 && <div className="dcan-empty">No candidates added</div>}
+      <div ref={listRef} className="dcan-list">
+        {filteredCandidates.length === 0 && 
+          <div className="dcan-empty">No matched candidates found on current loaded items</div>
+        }
 
         {filteredCandidates.map(dc => (
           <div key={dc.driverCandidateId} className="dcan-row">
@@ -204,6 +241,9 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
             </div>
           </div>
         ))}
+
+        {paginationLoading && <div className="dcan-loading">Loading...</div>}
+        {!hasMore && <div className="dcan-end">No more records</div>}
       </div>
     </div>
   );
