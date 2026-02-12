@@ -97,14 +97,7 @@ export default function DriveMembers({ driveId, role }: DriveMembersProps) {
         <input type="text" placeholder="Search by name or email" 
           value={search} onChange={(e) => setSearch(e.target.value)}
         />
-        <UserSearchAdd
-          users={users}
-          onAdd={(user) => {
-            if (window.confirm(`Add ${user.fullName} to this drive?`)) {
-              addMember(user.userId);
-            }
-          }}
-        />
+        <UserSearchAdd users={users} onAdd={(user) => {addMember(user.userId);}}/>
       </div>
 
       {/* Members list */}

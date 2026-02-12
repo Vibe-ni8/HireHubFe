@@ -175,13 +175,8 @@ export default function DriveCandidates({ driveId }: DriveCandidatesProps) {
         <input type="text" placeholder="Search by name or email" 
           value={search} onChange={(e) => setSearch(e.target.value)}
         />
-        <CandidateSearchAdd
-          candidates={candidates}
-          onAdd={(candidate) => {
-            if (window.confirm(`Add ${candidate.fullName} to this drive?`)) {
-              addCandidate(candidate.candidateId);
-            }
-          }}
+        <CandidateSearchAdd candidates={candidates} 
+          onAdd={(candidate) => {addCandidate(candidate.candidateId);}}
         />
         <button className="dcan-btn-bulk-upload" onClick={handleShowUpload} >
           Bulk <FaUpload/>
