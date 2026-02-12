@@ -1,9 +1,8 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { BaseResponse, Round } from "../../../dto/Response";
 import { getInterviewRounds } from "../../../services/Auth.service";
 import { HandleApiErrors, HandleApiSuccess } from "../../../helper/HelperMethods";
 import type { AxiosError } from "axios";
-import Spinner from "../../../components/Spinner";
 import { useNavigate } from "react-router-dom";
 
 interface RoundsProps {
@@ -16,25 +15,40 @@ export default function Rounds({ driveId }: RoundsProps) {
 
   const [loading, setLoading] = useState(false);
   const [rounds, setRounds] = useState<Round[]>([]);
+  const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const PAGE_SIZE = 100;
+  const listRef = useRef<HTMLDivElement>(null);
+
   const [interviewerSearch, setInterviewerSearch] = useState("");
   const [candidateSearch, setCandidateSearch] = useState("");
   const [roundTypeSearch, setRoundTypeSearch] = useState("");
   const [roundStatusSearch, setRoundStatusSearch] = useState("");
   const [roundResultSearch, setRoundResultSearch] = useState("");
-  
-  useEffect(() => {
+
+  const fetchRounds = async (pageNumber: number) => {
+    if (loading) return;
     setLoading(true);
-    getInterviewRounds(driveId)
+    getInterviewRounds(driveId, null, null, null, null, pageNumber, PAGE_SIZE)
       .then((response) => {
         const result = HandleApiSuccess(response);
-        setRounds(result.data ?? []);
-        setLoading(false);
+        if (result.data!.length < PAGE_SIZE) {
+          setHasMore(false);
+        }
+        setRounds(prev => [...prev, ...result.data!]);
+        setPage(pageNumber);
       })
       .catch((err: AxiosError<BaseResponse>) => {
         HandleApiErrors(err);
-        setRounds([]);
+      })
+      .finally(() => {
         setLoading(false);
       });
+  }
+  
+  useEffect(() => {
+    setRounds([]);
+    fetchRounds(1);
   }, [driveId]);
 
   const filteredRounds = useMemo(() => {
@@ -57,9 +71,28 @@ export default function Rounds({ driveId }: RoundsProps) {
     }, [interviewerSearch, candidateSearch, roundTypeSearch, roundStatusSearch, roundResultSearch, 
         rounds]);
 
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", handleScroll);
+
+    return () => {
+      el.removeEventListener("scroll", handleScroll);
+    };
+  }, [page, loading, hasMore]);
+
+  const handleScroll = () => {
+    const el = listRef.current;
+    if (!el || loading || !hasMore) return;
+    if (el.scrollTop + el.clientHeight >= el.scrollHeight - 5) {
+      const nextPage = page + 1;
+      fetchRounds(nextPage);
+    }
+  };
+
+
   return (
     <div className="ir-container">
-      <Spinner show={loading} />
       {/* Header */}
       <div className="ir-header">
         <input type="text" placeholder="Search by interviewer name or email" 
@@ -91,8 +124,10 @@ export default function Rounds({ driveId }: RoundsProps) {
       </div>
 
       {/* Members list */}
-      <div className="ir-list">
-        {filteredRounds.length === 0 && <div className="ir-empty">No rounds added</div>}
+      <div ref={listRef} className="ir-list">
+        {filteredRounds.length === 0 && 
+          <div className="ir-empty">No matched rounds found on current loaded items</div>
+        }
 
         {filteredRounds.map(r => (
         <div key={r.roundId} className="ir-card">
@@ -146,6 +181,9 @@ export default function Rounds({ driveId }: RoundsProps) {
             )}
         </div>
         ))}
+
+        {loading && <div className="ir-loading">Loading...</div>}
+        {!hasMore && <div className="ir-end">No more records</div>}
       </div>
     </div>
   );

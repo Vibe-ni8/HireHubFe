@@ -812,6 +812,14 @@ input.dd-checkbox {
   opacity: 0.9;
 }
 
+.ir-loading,
+.ir-end {
+  text-align: center;
+  padding: 10px;
+  font-size: 13px;
+  color: #888;
+}
+
 .ir-empty {
   color: #888;
   font-style: italic;
